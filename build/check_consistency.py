@@ -4,6 +4,16 @@ check_consistency.py — math + cross-figure consistency suite for
 internal relationship the document relies on. Prints PASS/FAIL per check.
 Run from build/:  python3 check_consistency.py
 """
+import sys
+# Windows consoles default to a non-UTF-8 codec (e.g. cp1252) that cannot encode
+# the non-ASCII symbols printed below (the multiplier check prints "≈"); force
+# UTF-8 so the suite runs on any platform without a PYTHONUTF8 env var.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except (AttributeError, ValueError):
+    pass
+
 import data as D
 
 PASS, FAIL = [], []
