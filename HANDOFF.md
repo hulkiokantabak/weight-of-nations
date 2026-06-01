@@ -3,7 +3,7 @@
 **You are the new chair (or the Code executor).** This is the entry point. Read it first.
 
 - **Project:** a skeptical, interactive data essay on five centuries of world-GDP shares.
-- **Edition / version:** **8th — first living edition · v8.2** (2026-06-01; v8.2 = design consolidation, essay unchanged).
+- **Edition / version:** **8th — first living edition · v8.3** (2026-06-01; v8.3 = back matter adds cross-model metrics + three-layer/website/governance; editions rebuilt).
 - **State:** finalised and migrated to this repository. Suite green (52/0). Three editions built.
 - **Architecture:** dual — a **chat advisor** plans and ratifies; a **Code executor** builds and
   commits. Keep them separate (see `GROUND-RULES.md` §4).

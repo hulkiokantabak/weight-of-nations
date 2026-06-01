@@ -6,6 +6,13 @@ a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis 
 Every release is tagged; history is never silently overwritten. Each entry names the change and,
 for data, its source and ruler labels.
 
+## v8.3 — 2026-06-01 (minor · publication back matter)
+- Essay back matter updated for the static publishing editions: Appendix E gains cross-model
+  effort, architecture & governance, and publication-layer rows; Appendix F gains a "shape of
+  the project" paragraph (the three-layer model + website + the honest, optional living claim).
+- Rebuilt all three editions (PDF 63 pp, HTML, audio); consistency suite 52/0. Analytical prose
+  unchanged.
+
 ## v8.2 — 2026-06-01 (patch · design consolidation)
 - Added `docs/living-document.md`: full design rationale synthesising four external LLM reviews
   (GPT-5.5 Pro, Gemini, Grok), the nine-expert panel, and the chair, with decisions and target

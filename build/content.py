@@ -1517,7 +1517,21 @@ SECTIONS = [{'k': 'masthead',
             'triggers a new analytical edition through the review body. See Appendix F.'],
            ['Build size',
             'About 3,600 lines of Python across the pipeline; manuscript ~15,400 words; 22 figures plus three '
-            "reference tables; this edition's print PDF runs 59 pages."]]},
+            "reference tables; this edition's print PDF runs 59 pages."],
+           ['Cross-model effort',
+            'Produced across nine conversations and five models — five Claude sessions and four other-LLM lines '
+            '(GPT-5.5 Pro, Gemini, Grok, DeepSeek), from 31 May 2026. The Claude spine and prose are canonical; the '
+            'GPT line supplied the ingested apparatus; the others evaluated. The full provenance-labelled accounting '
+            '(measured vs self-reported vs estimated) is kept with the project rather than claimed here as exact.'],
+           ['Architecture &amp; governance',
+            'Three layers: fixed dated editions for readers, a living openly-licensed public repository as the '
+            'source of truth, and a codified skill that is the interface to it. Maintained on a benevolent-dictator '
+            'model — the author gatekeeps the canonical release; anyone may fork, correct, or extend. Updating is '
+            'optional and promised to no one; a dated snapshot is a complete edition.'],
+           ['Publication layer',
+            'A fixed Google Books edition (a dated snapshot), distribution through Substack and Medium (each '
+            'carrying a banner pointing to the living version), and a reader-facing website hub built around the '
+            'interactive edition. The book stays literary; the website is navigational and updatable.']]},
  {'k': 'section', 'num': 'Appendix F', 'title': 'This Is a Living Document'},
  {'k': 'lede',
   't': '<i>Why the eighth edition has a version number and a repository, and what keeps it honest as the numbers '
@@ -1571,4 +1585,14 @@ SECTIONS = [{'k': 'masthead',
        'and rebuild it, one that convenes the review body, and one that codifies the annual data-refresh ritual and '
        'the source for every number. Together they are the audit trail. The point of all of it is the same as the '
        'point of the essay: a number is a costume, a direction is the body underneath, and the only way to keep the '
-       'two from being confused is to show your work — and to keep showing it as the work changes.'}]
+       'two from being confused is to show your work — and to keep showing it as the work changes.'},
+ {'k': 'p',
+  't': '<b>The shape of the project.</b> The living document is one of three layers, and naming them keeps the claim '
+       'honest. There is a <i>fixed, dated edition</i> — this one — for readers to quote; a <i>living public '
+       'repository</i> that holds the data, the code, the claim registry, and the correction log, and that anyone '
+       'may fork or improve; and a <i>skill</i> that codifies the reasoning and is the interface to the repository '
+       'rather than a second source of truth. A reader meets the project as a book or a web page; a researcher meets '
+       'it as a repository. The "living" claim is deliberately modest: the editions are dated snapshots, the '
+       'repository may be updated by the author or by contributors, and it is promised to no one — if it is never '
+       'touched again, this dated edition stands on its own. That modesty is the same discipline the essay asks of '
+       'its numbers: say what a thing is, date it, and do not claim more currency than you can keep.'}]
