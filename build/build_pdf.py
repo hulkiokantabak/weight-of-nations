@@ -2,12 +2,13 @@
 """build_pdf.py — render the print/PDF edition with weasyprint, from the same
 content + data + the matplotlib charts. Output to /mnt/user-data/outputs."""
 import os, glob
+from pathlib import Path
 import data as D
 import common
 import charts
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-FONTS = os.environ.get("WON_FONTS_DIR", "/home/claude/fonts/node_modules/@fontsource")
+FONTS = os.environ.get("WON_FONTS_DIR", os.path.join(HERE, "fonts", "@fontsource"))
 OUTDIR = os.environ.get("WON_OUTPUT_DIR", os.path.join(HERE, "..", "outputs"))
 os.makedirs(OUTDIR, exist_ok=True)
 OUT = os.path.join(OUTDIR, "the-shifting-weight-of-nations.pdf")
@@ -20,7 +21,7 @@ def _ff(family, rel, weight="400", style="normal"):
     if not p:
         return ""
     return (f"@font-face{{font-family:'{family}';font-weight:{weight};font-style:{style};"
-            f"src:url('file://{p}') format('woff2');}}\n")
+            f"src:url('{Path(p).as_uri()}') format('woff2');}}\n")
 
 FONT_FACES = "".join([
     _ff("Fraunces","fraunces/files/fraunces-latin-400-normal.woff2","400","normal"),
