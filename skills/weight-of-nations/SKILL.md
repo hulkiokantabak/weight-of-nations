@@ -83,7 +83,9 @@ Each is non-negotiable without the author explicitly re-opening it.
    not change the prose. A move large enough to change a *direction* (a plateau becoming a
    decline, a laggard beginning to converge) is a new analytical edition and must pass the
    review body first (see §4, and `weight-of-nations-panel`).
-10. **Authorship & tone.** Directed and written by Hulki Okan Tabak. Register is understated,
+10. **Authorship & tone.** Directed by Hulki Okan Tabak; written by Claude 4.8 and Hulki Okan Tabak (co-authorship
+    ratified by the author at v8.5; cross-model provenance disclosed in Appendix D and METRICS §5).
+    Register is understated,
     ruler-obsessed, humane; the body (a clinic, a haircut, a life) appears where the
     abstraction would otherwise win. Earlier-LLM provenance is disclosed in the colophon, not
     hidden.

@@ -3,7 +3,7 @@
 *A skeptical, interactive data essay on five centuries of world-GDP shares — and a **living
 document** that updates itself as the numbers change.*
 
-**Directed and written by Hulki Okan Tabak — with Claude.**
+**Directed by Hulki Okan Tabak; written by Claude 4.8 and Hulki Okan Tabak.**
 
 ---
 

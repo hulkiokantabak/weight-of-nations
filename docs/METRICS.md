@@ -6,7 +6,7 @@ transcript) it is marked **[measured]**; where it is reconstructed from artifact
 chats it is marked **[reconstructed]**; approximate values are marked **≈**. Nothing here is
 invented to look complete — unknown counts are stated as unknown.*
 
-Snapshot date: **2026-06-02** (Windows reproducibility + housekeeping pass) · Edition: **8th (first living edition)** · Version: **v8.3**
+Snapshot date: **2026-06-02** (Windows housekeeping + v8.5 layout/prose/authorship pass) · Edition: **8th (first living edition)** · Version: **v8.5**
 (v8.2 adds the design-consolidation docs in `living-document.md` + governance files; essay unchanged since v8.0.)
 Project timeline: work began **Sunday, 31 May 2026**.
 
@@ -16,10 +16,10 @@ Project timeline: work began **Sunday, 31 May 2026**.
 
 | Metric | Value | Source of measurement |
 |---|---|---|
-| Manuscript length | **16,713 words** | `wc -w` on the manuscript (was 15,374 pre-eighth-edition; +1,339 of back matter) |
+| Manuscript length | **17,134 words** | `wc -w` on the v8.5 manuscript (the prior 16,713 was a stale measurement; +65 words in v8.5's Appendix F) |
 | Figures | **22** chart placements | renderer count in `charts.py`; figure callouts in manuscript |
 | Reference tables | **3** (B1–B3) | manuscript |
-| Print edition | **63 pages** PDF, 2.32 MB | `pypdf` page count; `stat` on output (was 59 pages) |
+| Print edition | **62 pages** PDF, 2.32 MB | `pypdf` page count (v8.5 reclaimed an orphan page; was 63) |
 | Interactive edition | **16** live canvases, ≈0.88 MB | `<canvas>` count in the HTML |
 | Screen-reader edition | 1 TTS PDF, ≈0.15 MB | `stat` on output |
 | Build pipeline | **3,862 lines** of Python | `build/*.py` line count (was 3,827; +Windows-portability hardening) |

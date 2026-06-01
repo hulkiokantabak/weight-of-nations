@@ -6,6 +6,30 @@ a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis 
 Every release is tagged; history is never silently overwritten. Each entry names the change and,
 for data, its source and ruler labels.
 
+## v8.5 — 2026-06-02 (patch · layout + living-document prose + authorship)
+- LAYOUT (typeset PDF, 63→62 pp): generalised the keep-with-next grouper in `build/common.py` so a
+  heading/caption-lead binds to a following *table*, not only a figure (fixes the scenario-map
+  heading, "What to Watch", and the Appendix B2/B3 captions, plus three further lead+table cases of
+  the same defect). Long tables (≥15 rows or ≥2,500 cell chars — currently only Appendix E) break
+  across pages with a repeating header (`.tbl-wrap.longtable` CSS in `build/build_pdf.py`), removing
+  the orphan page that stranded the Appendix E heading.
+- PROSE (Appendix F): the repository paragraph now names the public GitHub repository, the
+  fork-and-open-a-request-to-merge update path, and the option-not-obligation framing; removed the
+  redundant "anyone may fork or improve" clause from the close. +65 words; no change to argument,
+  data, figures, or directions.
+- AUTHORSHIP: byline now reads "Directed by Hulki Okan Tabak; written by Claude 4.8 and Hulki Okan
+  Tabak" (masthead + Appendix D); invariant 10, CHARTER, and README updated to match. Cross-model
+  provenance remains disclosed in Appendix D and METRICS §5. *(Folded in from the v8.4 chat-advisor
+  line, which had not been committed to this repository.)*
+- Editions: shipped the chat-advisor's faithfully-rendered v8.5 editions (PDF 62 pp, HTML, audio
+  49 pp). `build/build_pdf.py` retains this repo's Windows font-portability fix (`Path.as_uri()` +
+  bundled-font default) — the v8.5 long-table CSS was applied *over* it via patch, not by drop-in.
+  Suite 52/0.
+- LINEAGE: the repository went **v8.3 → v8.5** directly; "v8.4" existed only in the chat-advisor
+  line (the authorship change + a stale-word-count correction) and its substance is folded in here.
+- STILL FLAGGED (pre-existing, out of scope): the first-page masthead reads "Seventh (fused &
+  panel-reviewed)" while the edition is the eighth.
+
 ## v8.3 — 2026-06-01 (minor · publication back matter)
 - Essay back matter updated for the static publishing editions: Appendix E gains cross-model
   effort, architecture & governance, and publication-layer rows; Appendix F gains a "shape of

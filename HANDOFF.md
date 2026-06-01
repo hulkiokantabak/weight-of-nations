@@ -3,12 +3,15 @@
 **You are the new chair (or the Code executor).** This is the entry point. Read it first.
 
 - **Project:** a skeptical, interactive data essay on five centuries of world-GDP shares.
-- **Edition / version:** **8th — first living edition · v8.3** (2026-06-01; v8.3 = back matter adds cross-model metrics + three-layer/website/governance; editions rebuilt).
+- **Edition / version:** **8th — first living edition · v8.5** (2026-06-02; v8.5 = long-table layout fix + Appendix F living-doc prose + authorship co-credit; editions rebuilt, PDF 62 pp).
 - **State:** finalised and migrated to this repository. Suite green (52/0). Three editions built.
   *2026-06-02 (Windows workstation):* reproducibility verified (suite + parser + HTML rebuild
   deterministically; PDF/audio build natively via MSYS2 GTK); build tooling hardened for Windows
   (commits `8003029`, `020eaa6`); release tags **v8.0–v8.3** created; repository **published to
   GitHub** (`https://github.com/hulkiokantabak/weight-of-nations`, `main` + tags).
+  *2026-06-02 (v8.5):* applied the author-authorised code-update kit — long-table layout fix
+  (PDF 63→62 pp), Appendix F living-doc prose, and the authorship co-credit ("written by Claude 4.8
+  and Hulki Okan Tabak"); shipped the kit's faithful editions; suite 52/0; tagged v8.5.
 - **Architecture:** dual — a **chat advisor** plans and ratifies; a **Code executor** builds and
   commits. Keep them separate (see `GROUND-RULES.md` §4).
 

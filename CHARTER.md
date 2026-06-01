@@ -21,4 +21,4 @@ the modern world.
   energy, demographics, and political capacity decide how output becomes power. The project keeps
   that humility.
 
-Directed and written by **Hulki Okan Tabak — with Claude.**
+Directed by **Hulki Okan Tabak**; written by **Claude 4.8 and Hulki Okan Tabak.**

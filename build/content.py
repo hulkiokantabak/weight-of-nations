@@ -6,7 +6,7 @@ SECTIONS = [{'k': 'masthead',
   'h1': 'The Shifting Weight of Nations',
   'standfirst': '<i>Five centuries of world GDP, the two rulers that make the same country look mighty or modest, '
                 'and the one variable underneath them both.</i>',
-  'byline': 'Directed &amp; written by Hulki Okan Tabak',
+  'byline': 'Directed by Hulki Okan Tabak, Written by Claude 4.8 &amp; Hulki Okan Tabak',
   'dateline': [('Inspired by',
                 "Stephen Kotkin on Hoover's <i>Uncommon Knowledge</i> (host Peter Robinson) — "
                 'youtube.com/watch?v=gBEdxb8ei_0'),
@@ -1423,7 +1423,9 @@ SECTIONS = [{'k': 'masthead',
        'eight percent; and one deep-history population figure was aligned to its own table. No analytical prose '
        'changed, because the coda speaks in directions, not point forecasts — which is the property that lets the '
        'numbers refresh without the argument moving.'},
- {'k': 'p', 't': '<b>Direction &amp; authorship.</b> Directed and written by Hulki Okan Tabak.'},
+ {'k': 'p',
+  't': '<b>Direction &amp; authorship.</b> Directed by Hulki Okan Tabak; written by Claude 4.8 and Hulki Okan '
+       'Tabak.'},
  {'k': 'p',
   't': '<b>Models.</b> The sixth-edition spine was composed with Claude (Anthropic); the imported apparatus '
        'originated with GPT-5.5 Pro. This fused edition was assembled and reconciled on Claude Opus 4.8, which '
@@ -1542,8 +1544,12 @@ SECTIONS = [{'k': 'masthead',
        "but it made the essay mortal — dependent on a single chat's memory, and out of date the moment the IMF or "
        'the World Bank published a revision. The eighth edition is built differently. Its single source of truth — '
        'one data file of numbers, one prose manuscript, and the renderers that turn them into the three editions you '
-       'can read — now lives in a public, version-controlled repository. The document you are holding is a '
-       '<i>snapshot</i> of that repository at a fixed version; the repository itself is designed to update.'},
+       'can read — now lives in a public, version-controlled repository on GitHub — one that anyone may read, copy, '
+       'or <i>fork</i>. The document you are holding is a <i>snapshot</i> of that repository at a fixed version; the '
+       'repository itself is designed to update, and the ordinary way to propose a change — a corrected figure, a '
+       'newly released number, an improvement to the build — is to fork it and open a request to merge. Updating it '
+       'is an <i>option</i>, not an obligation: an open invitation to anyone who finds the essay useful, and a '
+       'capability the project keeps available rather than a maintenance promise it makes.'},
  {'k': 'p',
   't': 'The update is deliberately narrow, and that narrowness is the whole trick. The argument of this essay is not '
        'a forecast. It is a method — separate the rulers, divide out population, watch productivity — and a set of '
@@ -1589,10 +1595,10 @@ SECTIONS = [{'k': 'masthead',
  {'k': 'p',
   't': '<b>The shape of the project.</b> The living document is one of three layers, and naming them keeps the claim '
        'honest. There is a <i>fixed, dated edition</i> — this one — for readers to quote; a <i>living public '
-       'repository</i> that holds the data, the code, the claim registry, and the correction log, and that anyone '
-       'may fork or improve; and a <i>skill</i> that codifies the reasoning and is the interface to the repository '
-       'rather than a second source of truth. A reader meets the project as a book or a web page; a researcher meets '
-       'it as a repository. The "living" claim is deliberately modest: the editions are dated snapshots, the '
-       'repository may be updated by the author or by contributors, and it is promised to no one — if it is never '
-       'touched again, this dated edition stands on its own. That modesty is the same discipline the essay asks of '
-       'its numbers: say what a thing is, date it, and do not claim more currency than you can keep.'}]
+       'repository</i> that holds the data, the code, the claim registry, and the correction log; and a <i>skill</i> '
+       'that codifies the reasoning and is the interface to the repository rather than a second source of truth. A '
+       'reader meets the project as a book or a web page; a researcher meets it as a repository. The "living" claim '
+       'is deliberately modest: the editions are dated snapshots, the repository may be updated by the author or by '
+       'contributors, and it is promised to no one — if it is never touched again, this dated edition stands on its '
+       'own. That modesty is the same discipline the essay asks of its numbers: say what a thing is, date it, and do '
+       'not claim more currency than you can keep.'}]

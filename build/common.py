@@ -5,6 +5,18 @@ import data as D
 
 _RCLS = {"nom":"nom","ppp":"","mix":"mix"}
 
+def _is_long_table(b):
+    """A table tall enough to span more than one printed page. Such a table must be
+    allowed to break (break-inside:auto in print) and must never be pulled into a
+    keep-with-next group — doing so would re-strand its heading on an otherwise-empty
+    page (the orphan this module exists to prevent). The thresholds isolate the single
+    multi-page reference table; every other table stays kept-together."""
+    if b.get("k") != "table":
+        return False
+    rows = b.get("rows") or []
+    chars = sum(len(c) for r in rows for c in r)
+    return len(rows) >= 15 or chars >= 2500
+
 def block_html(b, fig_inner):
     k = b["k"]
 
@@ -104,7 +116,12 @@ def block_html(b, fig_inner):
                 f'<ul class="src-list">{lis}</ul><footer>{b["footer"]}</footer></section>')
 
     if k == "table":
-        cls = " " + b["cls"] if b.get("cls") else ""
+        _classes = []
+        if b.get("cls"):
+            _classes.append(b["cls"])
+        if _is_long_table(b):
+            _classes.append("longtable")
+        cls = (" " + " ".join(_classes)) if _classes else ""
         cap = f'<caption>{b["caption"]}</caption>' if b.get("caption") else ""
         head = "".join(f"<th>{h}</th>" for h in b["headers"])
         rows = ""
@@ -134,8 +151,11 @@ def block_html(b, fig_inner):
     return ""
 
 def body_html(fig_inner):
-    """Render blocks, grouping a figure with its preceding sub-head and short intro so
-    print pagination never strands a heading on the page before its figure (keep-with-next).
+    """Render blocks, grouping a sub-head or caption-lead with the figure OR table it
+    introduces so print pagination never strands a heading on the page before its
+    block (keep-with-next). Long tables are deliberately excluded — they are meant to
+    break across pages, and binding one would re-create the very orphan this avoids;
+    an h3 immediately before a long table relies on h3{break-after:avoid} instead.
     The wrapper is inert on screen; in print it carries break-inside:avoid."""
     S = __import__("content").SECTIONS
     n = len(S)
@@ -143,23 +163,34 @@ def body_html(fig_inner):
     i = 0
     def short_intro(b):
         return b.get("k") in ("p", "lede") and len(b.get("t") or "") < 360
+    def caption_lead(b):
+        # a heading/caption paragraph that introduces a figure or a (non-long) table
+        return b.get("k") in ("p", "lede") and len(b.get("t") or "") < 420
+    def bindable(b):
+        # the kinds a heading/caption may keep-with: a figure, a NON-long table, or scenarios
+        k = b.get("k")
+        if k in ("fig", "table_marker", "table_audit", "scenarios"):
+            return True
+        if k == "table":
+            return not _is_long_table(b)
+        return False
     while i < n:
         b = S[i]
         k = b.get("k")
-        # group starting at an h3 sub-head: h3 [+ up to 2 short intros] [+ the figure it introduces]
+        # group starting at an h3 sub-head: h3 [+ up to 2 short intros] [+ the fig/table it introduces]
         if k == "h3":
             grp = [b]; j = i + 1
             while j < n and short_intro(S[j]) and (j - i) <= 2:
                 grp.append(S[j]); j += 1
-            if j < n and S[j].get("k") == "fig":
+            if j < n and bindable(S[j]):
                 grp.append(S[j]); j += 1
-            elif len(grp) == 1 and j < n:        # heading keeps at least its first following block
-                grp.append(S[j]); j += 1
+            elif len(grp) == 1 and j < n and not (S[j].get("k") == "table" and _is_long_table(S[j])):
+                grp.append(S[j]); j += 1        # heading keeps at least its first following block
             inner = "".join(block_html(x, fig_inner) for x in grp)
             out.append(f'<div class="keepwith">{inner}</div>')
             i = j; continue
-        # group a short intro paragraph that sits immediately before a figure
-        if short_intro(b) and i + 1 < n and S[i + 1].get("k") == "fig":
+        # group a caption-lead paragraph that sits immediately before a figure or table
+        if caption_lead(b) and i + 1 < n and bindable(S[i + 1]):
             inner = block_html(b, fig_inner) + block_html(S[i + 1], fig_inner)
             out.append(f'<div class="keepwith">{inner}</div>')
             i += 2; continue

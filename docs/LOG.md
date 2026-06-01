@@ -14,6 +14,18 @@ where known.*
 
 ---
 
+## v8.5 — layout (keep-with-next for tables) + living-document prose (2026-06-02)
+
+An author-authorised chat-advisor session generalised the keep-with-next grouper (`build/common.py`)
+so a heading/caption-lead binds to a following **table**, not only a figure — fixing four
+stranded-heading/caption cases (the scenario-map heading, "What to Watch", and the Appendix B2/B3
+captions) plus three further lead+table instances of the same defect, and adding a `longtable` class
+so the one multi-page table (Appendix E) breaks across pages with a repeating header instead of
+orphaning its heading (typeset PDF 63→62 pp). No data, figure, or direction changed; suite 52/0.
+Logged for the trail — a presentation defect (stranded headings), not a data catch. Severity 1–2.
+
+---
+
 ## Living-repository operations — Windows portability (2026-06-02)
 
 Migrating the bundle to a Windows workstation surfaced two **operational** catches in the build

@@ -114,6 +114,10 @@ h3{font-size:13pt;margin:5mm 0 1.5mm;break-after:avoid}
 .scn-watch span{display:block;font-family:'PlexMono',monospace;font-size:6.8pt;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:.6mm}
 
 .tbl-wrap{margin:5mm 0 1mm;border:.8pt solid var(--rule);border-radius:3pt;break-inside:avoid;overflow:hidden}
+.tbl-wrap.longtable{break-inside:auto;overflow:visible}
+.tbl-wrap.longtable table{break-inside:auto}
+.tbl-wrap.longtable tr{break-inside:avoid}
+.tbl-wrap.longtable thead{display:table-header-group}
 table{border-collapse:collapse;width:100%;background:var(--card);font-size:9pt}
 caption{caption-side:top;text-align:left;font-family:'Fraunces',serif;font-weight:600;font-size:11.5pt;padding:3.5mm 4mm 2mm}
 th,td{padding:2.4mm 4mm;text-align:left;border-bottom:.6pt solid var(--rule-soft);vertical-align:top}
