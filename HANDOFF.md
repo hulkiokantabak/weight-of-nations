@@ -3,7 +3,7 @@
 **You are the new chair (or the Code executor).** This is the entry point. Read it first.
 
 - **Project:** a skeptical, interactive data essay on five centuries of world-GDP shares.
-- **Edition / version:** **8th — first living edition · v8.1** (2026-06-01; v8.1 = cross-model metrics finalised, essay unchanged).
+- **Edition / version:** **8th — first living edition · v8.2** (2026-06-01; v8.2 = design consolidation, essay unchanged).
 - **State:** finalised and migrated to this repository. Suite green (52/0). Three editions built.
 - **Architecture:** dual — a **chat advisor** plans and ratifies; a **Code executor** builds and
   commits. Keep them separate (see `GROUND-RULES.md` §4).
@@ -16,6 +16,7 @@
 2. `skills/weight-of-nations/SKILL.md` — the orchestrator (invariants, file map, loop, self-update)
 3. `docs/source-research.md` — the verified numbers (never re-derive)
 4. `docs/METHODOLOGY.md` — how the editions were made (context, not required to act)
+   - `docs/living-document.md` — the design rationale + target GitHub/website structure (read before any restructure); `CHARTER.md` — the project's moral center
 5. `build/` modules — only as deep as the task needs
 6. the other two skills — `weight-of-nations-panel` (review body), `weight-of-nations-data-refresh` (update ritual)
 

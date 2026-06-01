@@ -103,6 +103,20 @@ Substack is HTML-first and does not render a 60-page typeset PDF inline well, so
 *If the essay is long for one post, serialise it the way prior projects did (a few sections per
 post), linking forward and back — but keep the single canonical version on the website/PDF.*
 
+**A recommended Substack/Medium sequence** (distribution, not the archive — each post tells the
+story *behind* a piece of the essay and points back to the repo and site):
+1. The Two Rulers: Why Japan Can Be 18% and 4% at the Same Time
+2. The American Multiplier: Why 4% of Humanity Can Be a Quarter of World GDP
+3. China's Return: Scale Without Rich-Country Prosperity
+4. India Is Not Small — It Is Huge With a Low Multiplier
+5. The World Economy Is Not a Pie Chart
+6. PPP Is Powerful, but It Cannot Buy Jet Engines
+7. What GDP Share Misses: Technology, Energy, Chokepoints, and the Dollar
+8. How to Read World-Power Numbers Without Being Fooled
+
+When a new data vintage drops, the post is not a reprint — it is an analysis of how the points
+on the scatter drifted over the last six months.
+
 ## E · Medium (mirror of the Substack post)
 
 1. Medium imports cleanly from a published URL: use **Import a story** and point it at the
@@ -127,11 +141,31 @@ post), linking forward and back — but keep the single canonical version on the
 [ ] HANDOFF.md "open items" updated to mark what's published
 ```
 
-## Keeping published versions honest as the document updates
+## Snapshot discipline, releases, and governance
 
-Google Books, Substack, and Medium copies are **snapshots**; the living version is the
-repository (and its Pages site). On a material refresh:
-- the **canonical** PDF/HTML are rebuilt and re-pushed automatically;
-- re-upload the new PDF to Google Books and note the version in the description;
-- the Substack/Medium posts can carry a short "this is a snapshot of v8.x; the living version is
-  at <Pages URL>" line so readers can always reach the current numbers.
+**Every distribution channel is a snapshot; the repository (and its Pages site) is the living
+version.** This is not optional housekeeping — it is the rule that stops multi-channel publishing
+from recreating the exact staleness the essay attacks. **Every** Google Books / Substack /
+Medium copy **must** carry a visible line:
+
+> *This is a snapshot of edition v8.x (June 2026). The living version — current data, source
+> notes, chart code, claim registry, and correction log — is at <repo / Pages URL>.*
+
+Google Books front matter says the same: *"This edition is a fixed publication snapshot. The
+living data, source notes, chart code, correction log, and future editions are maintained at the
+public Weight of Nations repository."*
+
+**Release rhythm (semver; none promised, all optional).** *Patch* — typo/layout/metadata.
+*Minor* — new IMF/WDI/UN data, refreshed charts, no thesis change. *Major* — new benchmark,
+framework, or country section, or a *direction* change (panel-gated). Suggested cadence:
+quarterly notes / claim audits; a twice-yearly IMF WEO pass; an annual full refresh; a major
+revision every 2–3 years only if the thesis needs it. Tag every release; never overwrite history.
+
+**Governance (BDFL).** The author gatekeeps the canonical `main` and the official editions;
+anyone may fork/PR; the gates open gradually (see `CONTRIBUTING.md`). The "living" claim is
+honest precisely because it is modest: updatable by anyone, promised by no one, and complete as a
+dated snapshot even if never touched again.
+
+On a material refresh: the canonical PDF/HTML rebuild and re-push automatically (the workflow
+opens a PR for a human to ratify); re-upload the new PDF to Google Books and note the version;
+update the snapshot line on each post to the new version.

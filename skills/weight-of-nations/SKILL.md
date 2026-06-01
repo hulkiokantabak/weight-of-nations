@@ -55,8 +55,11 @@ Read-order for a new chair: this skill → `docs/METHODOLOGY.md` → `docs/sourc
 
 Each is non-negotiable without the author explicitly re-opening it.
 
-1. **Two rulers, always labelled.** Every share figure states whether it is nominal
-   (market-rate) or PPP (price-adjusted). Never an unlabelled "share of world GDP."
+1. **Label the ruler — always, fully.** No GDP-share claim, in prose or a figure, without
+   naming its **ruler** (nominal current-dollar / PPP-international-dollar / population share /
+   multiplier / bloc construction), its **source vintage**, and its **uncertainty**. Never an
+   unlabelled "share of world GDP." This one rule preserves the project's whole point; a figure
+   true on one ruler is routinely false on another.
 2. **Three PPP totals are distinct fields, never merged.** 2026 current ($222.8T) ·
    2024 current (~$195T) · 2024 constant-2021 (~$170T, the internal arithmetic lane). They
    live as separate values in `data.py` and are never spliced or averaged.
@@ -212,3 +215,35 @@ should pick up.
 - When in doubt about whether a change is "decimals" or "direction," treat it as a direction
   and route it through the panel. The cost of an unnecessary panel pass is small; the cost of
   silently shifting the argument is the whole project's credibility.
+
+---
+
+## 8 · Tasks, releases, governance, survival
+
+**Canonical tasks (the skill's output modes).** The skill is the *interface* to the repo, not
+the source of truth. Default posture on any prompt: **label the ruler and check the claim
+first; recompute only on explicit request** (the project's soul is measurement discipline, not
+auto-recalculation). The canonical modes:
+`claim_audit · country_reading · data_update_memo · chart_update · essay_revision ·
+website_article · audio_narration · release_notes · source_review · contributor_review`.
+
+**The claim registry.** Public macro-historical claims and their ruler-labeled verdicts live in
+`data/claim-registry.md` (mirrored in `data.py`'s `AUDIT`). A `claim_audit` adds/updates a row,
+names the ruler, cites a dated value from `source-research.md`, and keeps the two in sync.
+
+**Releases (semver for a data essay).** *Patch* = typo/layout/metadata. *Minor* = new
+WDI/IMF/UN data, refreshed charts, no thesis change (decimals only). *Major* = new
+Maddison/PWT benchmark, new framework or country section, or a *direction* change (panel-gated).
+Every public release is tagged; history is never silently overwritten; `CHANGELOG.md` records
+each material change with its source and ruler labels.
+
+**Governance (BDFL — see `CONTRIBUTING.md`).** The author is the gatekeeper of the canonical
+`main` branch and the official editions; anyone may fork/PR; gates open gradually as CI and a
+reviewer circle mature. Every official release passes a **human editorial gate** — the danger is
+not bad code but automatic confidence.
+
+**Survival / graceful death.** The repo lives only as long as its dependencies (Actions, Pages,
+WeasyPrint, font CDNs, source URLs). The **frozen versioned PDF + `data.py` is the canonical
+fallback**: if the automation breaks, fall back to the last good edition with an honest dated
+banner rather than letting the document silently go stale. Updating is *optional and promised to
+no one*; a dated snapshot is a complete terminal state.

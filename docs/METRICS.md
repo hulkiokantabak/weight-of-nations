@@ -6,8 +6,8 @@ transcript) it is marked **[measured]**; where it is reconstructed from artifact
 chats it is marked **[reconstructed]**; approximate values are marked **≈**. Nothing here is
 invented to look complete — unknown counts are stated as unknown.*
 
-Snapshot date: **2026-06-01** · Edition: **8th (first living edition)** · Version: **v8.1**
-(v8.1 adds the cross-model effort metrics in §5; the essay itself is unchanged from v8.0.)
+Snapshot date: **2026-06-01** · Edition: **8th (first living edition)** · Version: **v8.2**
+(v8.2 adds the design-consolidation docs in `living-document.md` + governance files; essay unchanged since v8.0.)
 Project timeline: work began **Sunday, 31 May 2026**.
 
 ---

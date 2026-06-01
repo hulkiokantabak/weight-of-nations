@@ -1,0 +1,41 @@
+# Changelog
+
+All material changes to *The Shifting Weight of Nations*, newest first. Semantic versioning for
+a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis change;
+**major** = new benchmark/framework/country section, or a *direction* change (panel-gated).
+Every release is tagged; history is never silently overwritten. Each entry names the change and,
+for data, its source and ruler labels.
+
+## v8.2 — 2026-06-01 (patch · design consolidation)
+- Added `docs/living-document.md`: full design rationale synthesising four external LLM reviews
+  (GPT-5.5 Pro, Gemini, Grok), the nine-expert panel, and the chair, with decisions and target
+  structure.
+- Added `CHARTER.md` (project charter / moral center), `data/claim-registry.md` (ruler-labeled
+  public-claim registry, seeded from the audit data), `CITATION.cff`, `CONTRIBUTING.md`,
+  `LICENSE.md` (recommended CC-BY-4.0 prose+data / MIT code).
+- Folded learnings into the skills, README, and publish guide: full ruler-label rule; whole-
+  series single-vintage refresh; mandatory snapshot banners on every channel; semver + release
+  cadence; BDFL governance; graceful-death / canonical-fallback; the skill's output modes.
+- The essay and its data are **unchanged**; the consistency suite remains 52/0.
+
+## v8.1 — 2026-06-01 (patch · metrics)
+- Added the cross-model effort metrics (§5 of `docs/METRICS.md`): five Claude chats + four
+  other-LLM lines (GPT-5.5 Pro, Gemini, Grok, DeepSeek), with strict provenance labels
+  (measured / self-reported / estimate). Essay unchanged.
+
+## v8.0 — 2026-06-01 (major · first living edition)
+- Finalised the eighth edition and migrated the project to a code-first, self-updating public
+  repository (single source of truth → three editions: interactive, print, screen-reader).
+- Manuscript back matter: added Appendix F ("This Is a Living Document") and seven project-metric
+  rows to Appendix E. Analytical prose unchanged.
+- Four-pass finalisation (logic/math · figures · literary · editorial) cleared ten coda-data
+  catches; the 52-check consistency suite reports 52/0.
+- Established three project skills (orchestrator · nine-expert + fifteen-advisor panel ·
+  data-refresh ritual), the data-refresh harness, and the GitHub Actions living-update workflow.
+- Canonical slug set to `the-shifting-weight-of-nations`; output paths made repo-relative.
+
+## Editions 1–7 (pre-repository, May–June 2026)
+- Built across separate conversations; lineage recorded in `docs/METHODOLOGY.md`. Highlights:
+  ed-4 built the single-source pipeline; ed-7 fused the Claude spine with an ingested GPT-5.5 Pro
+  apparatus and corrected world PPP from ~$205T to $222.8T (IMF WEO April 2026), adding the
+  speculative coda (figures 17–22).

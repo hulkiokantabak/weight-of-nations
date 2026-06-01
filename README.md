@@ -47,6 +47,23 @@ The automation lives in [`.github/workflows/living-update.yml`](.github/workflow
 the ritual and the field-by-field source map live in
 [`skills/weight-of-nations-data-refresh/`](skills/weight-of-nations-data-refresh/).
 
+### Three layers, and an honest claim
+
+The project is built as three distinct layers, not one mutating document: (1) **canonical,
+dated editions** for readers and citation (Google Books, PDF, EPUB, audio); (2) this **living
+public repository** as the source of truth, with tagged releases; and (3) the **Weight of
+Nations skill**, which codifies the reasoning and is the *interface* to the repo, not the source
+of truth itself.
+
+The "living" claim is deliberately modest and honest: **the canonical editions are dated
+snapshots; the report *can* be updated — by the author or by contributors via fork/PR — but
+updating is optional and promised to no one.** If it is never touched again, the dated snapshot
+stands as a complete, honest edition. And if the automation ever breaks (a dependency dies, a
+source URL changes), the **last good PDF plus `build/data.py` is the canonical fallback** — the
+frozen edition is the fossil that survives. The full design rationale, the reviews behind it, and
+the target structure are in [`docs/living-document.md`](docs/living-document.md); the moral
+center is [`CHARTER.md`](CHARTER.md).
+
 ## Repository map
 
 ```
@@ -97,6 +114,20 @@ python3 build_audio.py
 Re-run `python3 parse_manuscript.py` **only if you changed the prose** in `manuscript/`. To
 write the editions elsewhere, set `WON_OUTPUT_DIR`. Full environment notes in
 [`docs/README-rebuild.md`](docs/README-rebuild.md).
+
+## Governance, contributing, and citation
+
+The author (Hulki Okan Tabak) is the maintainer and the gatekeeper of the **canonical** release
+(a benevolent-dictator model): the `main` branch and the official editions are the author's
+approved versions, but **anyone may fork, extend, translate, or open a pull request**. The one
+rule that governs every contribution — never state a GDP-share claim without labeling the ruler,
+the source vintage, and the uncertainty — and the contribution lanes are in
+[`CONTRIBUTING.md`](CONTRIBUTING.md). Public macro-historical claims and their ruler-labeled
+verdicts live in [`data/claim-registry.md`](data/claim-registry.md).
+
+**Licence (recommended, pending the author's confirmation):** prose, figures, and data under
+**CC-BY-4.0**; code under **MIT** — see [`LICENSE.md`](LICENSE.md). **Cite** the dated edition
+you used; machine-readable metadata is in [`CITATION.cff`](CITATION.cff).
 
 ## The golden rule
 

@@ -93,6 +93,12 @@ The consistency suite enforces this; if you hand-type a derived value it will go
 
 ## 4 · The discipline (why this stays honest)
 
+- **Whole series, single vintage — never patch the tip.** The IMF and World Bank revise
+  *back-history*, not just the latest year. If you update only the 2026 headline and leave 2024
+  and 2020 on an older vintage, you ship an internally inconsistent document that *looks*
+  authoritative. So each cycle, **re-pull the entire series from one source vintage** (record the
+  vintage in `source-research.md` and `data/snapshots/<vintage>/`), and update the fields
+  together. Mixing vintages within a figure is the subtlest way to corrupt the whole essay.
 - **Directions, not decimals.** The test for "does the prose change?" is never "did a number
   move?" — it is "did a *direction* move?" Most refreshes are decimals; the prose stands.
 - **Two rulers, three lanes, never spliced.** A WEO current-$ PPP total never overwrites the
@@ -112,11 +118,14 @@ The consistency suite enforces this; if you hand-type a derived value it will go
 ## 5 · Quick checklist
 
 ```
-[ ] New numbers recorded in docs/source-research.md (source + vintage + URL, [V])
+[ ] Whole series re-pulled from ONE source vintage (not just the latest year)
+[ ] New numbers recorded in docs/source-research.md + data/snapshots/<vintage>/ (source + URL, [V])
 [ ] build/data.py inputs updated (derived fields left alone)
 [ ] check_consistency.py → 52 passed, 0 FAILED
 [ ] three editions rebuilt clean (parse only if prose changed)
+[ ] claim registry (data/claim-registry.md + AUDIT) refreshed if any verdict moved
 [ ] decimals-or-direction decided; panel convened if a direction moved
-[ ] version/edition bumped; METRICS.md + LOG.md updated
+[ ] release classified patch / minor / major; version/edition bumped
+[ ] METRICS.md + LOG.md + CHANGELOG.md updated
 [ ] committed / PR opened; pushed to the project repo
 ```

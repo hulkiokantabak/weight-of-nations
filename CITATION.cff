@@ -1,0 +1,29 @@
+cff-version: 1.2.0
+title: "The Shifting Weight of Nations"
+message: "If you cite or reuse this work, please cite the dated edition you used."
+type: dataset
+abstract: >-
+  A skeptical, reproducible data essay on five centuries of world-GDP shares, decomposing a
+  nation's share of world GDP into population, price-level (the measuring ruler: nominal vs PPP),
+  and the productivity multiplier. Published as fixed, dated editions for readers plus a living,
+  openly-licensed repository (data, chart code, claim registry, methodology) for researchers.
+authors:
+  - family-names: Tabak
+    given-names: Hulki Okan
+keywords:
+  - economic history
+  - GDP share
+  - purchasing power parity
+  - nominal GDP
+  - productivity multiplier
+  - Great Divergence
+  - data visualization
+  - reproducible research
+version: "8.2"
+date-released: "2026-06-01"
+license: CC-BY-4.0
+notes: >-
+  Edition lineage: editions 1-7 were static documents; the eighth is the first living edition.
+  The canonical citable artifact is the dated PDF in book/ (or outputs/); the living source of
+  truth is the repository. Code is offered under MIT; prose and data under CC-BY-4.0
+  (recommended; the author confirms the final license — see LICENSE.md).
