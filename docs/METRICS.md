@@ -6,7 +6,9 @@ transcript) it is marked **[measured]**; where it is reconstructed from artifact
 chats it is marked **[reconstructed]**; approximate values are marked **≈**. Nothing here is
 invented to look complete — unknown counts are stated as unknown.*
 
-Snapshot date: **2026-06-01** · Edition: **8th (first living edition)** · Version: **v8.0**
+Snapshot date: **2026-06-01** · Edition: **8th (first living edition)** · Version: **v8.1**
+(v8.1 adds the cross-model effort metrics in §5; the essay itself is unchanged from v8.0.)
+Project timeline: work began **Sunday, 31 May 2026**.
 
 ---
 
@@ -51,8 +53,8 @@ accounting:
 | — finalisation brief length | **172 words** (964 chars) | [measured] from transcript |
 | — migration brief length | ≈440 words | ≈ (this message; structured, 3 goals + 6 build items + rules) |
 | Assistant tool calls, this conversation (pre-compaction) | **18** | [measured] from transcript |
-| Conversations across the lineage (editions 1–8) | **≥5 distinct chats**, of which **3** are identifiable by id | [reconstructed]: ed-4 `99de5936`, ed-7 `8d553b33`, ed-8 (this) |
-| Total project prompts (all editions) | **not measured** | earlier chats not in the working transcript; do not fabricate |
+| Claude conversations in the lineage | **5** (this is the 5th; 4 prior), of which **3** are identifiable by id | [author-confirmed count]; ed-4 `99de5936`, ed-7 `8d553b33`, ed-8 (this). See §5 for the full cross-model accounting. |
+| Total project prompts (all editions, all models) | see **§5** | not fully transcript-measured; estimated per the author's heuristics, labelled there |
 
 *Per-prompt density is high and low-count: the author works in a few long, structured prompts
 that delegate large multi-step builds, then reviews — rather than many short turns. The
@@ -74,8 +76,89 @@ denominator.
 | **Data staleness** | The living mechanism (`weight-of-nations-data-refresh` + `.github/workflows/living-update.yml`) refreshes `data.py` on each release and rebuilds; the 52 checks block a bad refresh. |
 | **Argument drift** | Guarded by invariant 9: only a *direction* change (not a decimal) reopens the prose, and only through the review body. |
 
-## 5 · How to update this file
+## 5 · The multi-model effort (cross-system metrics)
+
+This essay was produced not in one chat but across a **nine-conversation, five-model effort**:
+five Claude chats (this is the fifth) plus four other-LLM lines — ChatGPT (GPT-5.5 Pro),
+Gemini, Grok, and DeepSeek. The numbers below characterise the **scale and shape** of that
+effort. Provenance is labelled strictly:
+
+- **[measured]** — from this conversation's transcript or the repo files.
+- **[self-reported]** — ChatGPT/GPT-5.5 Pro's own metrics assessment, supplied by the author;
+  **not independently verified.**
+- **[estimate]** — derived from the author's stated heuristics (the non-Claude models as
+  fractions of ChatGPT; the prior Claude chats as ≈4× this one).
+
+> **Commensurability caveat.** The Claude line's canonical deliverable is *this living essay and
+> its repository* (a 16,713-word essay → three editions, plus ~490 lines of skills and ~860
+> lines of docs). ChatGPT's self-report counts *report-PDF iterations and their words*. These
+> are different units of work; the cross-model word figures index volume/effort, **not** a
+> single corpus of unique words, and report iterations overlap heavily.
+
+### Tier A — Claude line (5 chats)
+
+| Chat | Role | Prompts | Prompt words | Output |
+|---|---|---|---|---|
+| #5 (this one) | finalisation + migration to the living document | **2** driving [measured] | **~612** (172 + ~440) [measured] | the repository (3 skills, all docs, the workflow, the refresh harness), +1,339 manuscript words, three rebuilt editions; canonical essay **16,713 words / 63-pp PDF** |
+| #1–#4 | editions 1–7 authoring, the 22-figure pipeline build, the 7th-edition fusion | not transcript-counted | not transcript-counted | **≈4× this chat's output in aggregate** [author estimate] |
+| **Claude total** | — | — | — | **≈5× this chat** [author estimate] |
+
+### Tier B — ChatGPT / GPT-5.5 Pro (parallel authoring line) — [self-reported]
+
+| Metric | Value |
+|---|---|
+| Visible user prompts | **15** (14 production + 1 metrics) |
+| User-prompt words | **~1,348** |
+| Major report PDFs | **8** · 231 pages · **~56,757 words** |
+| Audio-upload PDFs | **3** · 34 pages · ~14,934 words |
+| Combined report + audio | **265 pages · ~71,691 words** |
+| Persisted deliverable files | **21** · ~77 MB |
+| Cover / concept images | **27** |
+| Model named in *its* colophon | GPT-5.5 Pro |
+
+*This is the GPT line that produced the publication-edition apparatus the seventh Claude edition
+fused in; the figures are ChatGPT's own count, not verified here.*
+
+### Tier C — Gemini / Grok / DeepSeek (evaluation + synthesis lines) — [estimate]
+
+Per the author's heuristic: Gemini and Grok ≈ **1/6** of ChatGPT each; DeepSeek ≈ **1/10**.
+
+| Model | Scale vs ChatGPT | ~Prompts | ~Prompt words | ~Output words |
+|---|---|---|---|---|
+| Gemini | 1/6 | ~2–3 | ~225 | ~11,950 |
+| Grok | 1/6 | ~2–3 | ~225 | ~11,950 |
+| DeepSeek | 1/10 | ~1–2 | ~135 | ~7,170 |
+
+### Cross-model totals (mixed provenance — read with the caveat above)
+
+| Metric | Value | Composition |
+|---|---|---|
+| Non-Claude visible prompts | **~21–22** | ChatGPT 15 + Gemini ~2.5 + Grok ~2.5 + DeepSeek ~1.5 |
+| Non-Claude prompt words | **~1,933** | 1,348 + 225 + 225 + 135 |
+| Non-Claude output words | **~102,800** | 71,691 + 11,948 + 11,948 + 7,169 (iterations overlap; not unique) |
+| Conversations, all models | **9** | 5 Claude + 4 other-LLM |
+| Distinct models | **5** | Claude (Opus 4.8), GPT-5.5 Pro, Gemini, Grok, DeepSeek |
+
+### The document flow (author-described)
+
+1. **Four LLM synthesis documents** — each model produced a synthesis from the shared Hoover/
+   Kotkin brief (the initial ~400-word request went to all of them).
+2. **Iterative versions by ChatGPT and Claude** — the two systems that carried the deepest
+   authoring, each producing several editions.
+3. **Final documents culminating with Claude** — the canonical essay in this repository, whose
+   spine is Claude's and whose ingested apparatus is GPT-5.5 Pro's (Appendix D records this).
+
+### Timeline
+
+Work began **Sunday, 31 May 2026**; the essay was finalised and migrated to this living
+repository **Monday, 1 June 2026**.
+
+---
+
+## 6 · How to update this file
 
 Bump on every session: artifact metrics if files changed; the catch count from `LOG.md`; the
-version/edition; and any new survival event. Mark new numbers **[measured]** or
-**[reconstructed]**; never promote a reconstruction to a measurement.
+version/edition; and any new survival event. Mark every number with its provenance —
+**[measured]**, **[reconstructed]**, **[self-reported]**, or **[estimate]** — and **never
+promote** a reconstruction, a self-report, or an estimate to a measurement. When an external
+figure contradicts a measured one, keep the measured value canonical and note the discrepancy.

@@ -93,6 +93,15 @@ while absorbing the best of the others and going deeper. The lineage:
 - **Edition 8 — finalisation and the living document.** *(this conversation, 2026-06-01.)* The
   document was finalised and migrated to a code-first, self-updating architecture. See §4–§6.
 
+**The arc, across models.** The project ran from **Sunday, 31 May 2026** across **nine
+conversations and five models** — five Claude chats (the fifth being this finalisation-and-
+migration session) plus four other-LLM lines (GPT-5.5 Pro, Gemini, Grok, DeepSeek). The shape
+was: four initial LLM synthesis documents from a shared brief; several iterated versions, with
+ChatGPT and Claude carrying the deepest authoring; and a final line that culminated with
+Claude, whose spine and prose are the canonical essay's and whose ingested reporting apparatus
+came from the GPT line. The full cross-model accounting — prompts, output volume, and the
+provenance of every figure — is in `docs/METRICS.md` §5.
+
 ---
 
 ## 4 · The eighth edition: finalisation
