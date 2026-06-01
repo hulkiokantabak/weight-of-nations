@@ -5,6 +5,10 @@
 - **Project:** a skeptical, interactive data essay on five centuries of world-GDP shares.
 - **Edition / version:** **8th — first living edition · v8.3** (2026-06-01; v8.3 = back matter adds cross-model metrics + three-layer/website/governance; editions rebuilt).
 - **State:** finalised and migrated to this repository. Suite green (52/0). Three editions built.
+  *2026-06-02 (Windows workstation):* reproducibility verified (suite + parser + HTML rebuild
+  deterministically; PDF/audio build natively via MSYS2 GTK); build tooling hardened for Windows
+  (commits `8003029`, `020eaa6`); release tags **v8.0–v8.3** created; repository **published to
+  GitHub** (`https://github.com/hulkiokantabak/weight-of-nations`, `main` + tags).
 - **Architecture:** dual — a **chat advisor** plans and ratifies; a **Code executor** builds and
   commits. Keep them separate (see `GROUND-RULES.md` §4).
 
@@ -74,13 +78,19 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 
 ## 6 · Open items (keep current)
 
-- [ ] **Publish** the v8.0 editions to Google Books, Substack, and Medium — see
+- [x] **Release tags v8.0–v8.3 created** and **repository pushed to GitHub** (2026-06-02):
+  `https://github.com/hulkiokantabak/weight-of-nations` (`main` + tags). *Next: in repo Settings →
+  Actions → General, enable "Read and write permissions" + allow Actions to create PRs, so the
+  living-update workflow can open PRs (PUBLISH-GUIDE §A).*
+- [ ] **Publish** the editions to Google Books, Substack, and Medium — see
   `publication/PUBLISH-GUIDE.md`. *Requires the author's accounts; the chair prepares, the author
   publishes.*
-- [ ] **Create the GitHub repo and push** — see `publication/PUBLISH-GUIDE.md` §"GitHub setup."
-  *Requires the author's GitHub auth; local commit history is ready.*
 - [ ] **Enable GitHub Pages** (optional, toward a dedicated website) — serve the interactive
   edition as the site; workflow already builds it.
+- [ ] **Windows-faithful PDF/audio (optional).** PDF/audio build natively on Windows via MSYS2 GTK,
+  but the body font (IBM Plex Sans) falls back under fresh MSYS2 fontconfig (+3 pp; `docs/LOG.md`
+  O-03). The canonical committed PDF is the faithful reference; rebuild on the original/CI pipeline
+  for publication-grade output.
 - [ ] First scheduled **data refresh** will be the next IMF WEO (October 2026) — dry-run the
   living-update workflow before then.
 

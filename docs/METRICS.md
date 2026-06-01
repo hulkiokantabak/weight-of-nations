@@ -6,7 +6,7 @@ transcript) it is marked **[measured]**; where it is reconstructed from artifact
 chats it is marked **[reconstructed]**; approximate values are marked **≈**. Nothing here is
 invented to look complete — unknown counts are stated as unknown.*
 
-Snapshot date: **2026-06-01** · Edition: **8th (first living edition)** · Version: **v8.3**
+Snapshot date: **2026-06-02** (Windows reproducibility + housekeeping pass) · Edition: **8th (first living edition)** · Version: **v8.3**
 (v8.2 adds the design-consolidation docs in `living-document.md` + governance files; essay unchanged since v8.0.)
 Project timeline: work began **Sunday, 31 May 2026**.
 
@@ -22,7 +22,7 @@ Project timeline: work began **Sunday, 31 May 2026**.
 | Print edition | **63 pages** PDF, 2.32 MB | `pypdf` page count; `stat` on output (was 59 pages) |
 | Interactive edition | **16** live canvases, ≈0.88 MB | `<canvas>` count in the HTML |
 | Screen-reader edition | 1 TTS PDF, ≈0.15 MB | `stat` on output |
-| Build pipeline | **3,827 lines** of Python | `wc -l build/*.py` |
+| Build pipeline | **3,862 lines** of Python | `build/*.py` line count (was 3,827; +Windows-portability hardening) |
 | Consistency suite | **52 checks**, 0 failing | `check_consistency.py` result |
 | Project skills | **3** SKILL.md files, **487 lines** total | `wc -l skills/*/SKILL.md` |
 | Review-body personas | **24** (9 standing experts + 15 on-call advisors) | `weight-of-nations-panel` skill |
@@ -33,6 +33,7 @@ Project timeline: work began **Sunday, 31 May 2026**.
 |---|---|---|
 | Editions to date | **8** | 1–7 static; 8th is the first living edition [reconstructed from changelog + past chats] |
 | Catches, eighth-edition finalisation | **10** found & cleared (4 load-bearing logged) | all in the coda data layer; no prose changed [measured this session] |
+| Catches, Windows-portability pass (2026-06-02) | **2** operational (O-02 console UTF-8 · O-03 font path) + 1 residual | build tooling only; data/prose/suite unaffected [measured this session] |
 | Catches, seventh edition | **3** logged (incl. the $205T→$222.8T correction) | from the changelog [reconstructed] |
 | Material data corrections, lifetime | ≥4 (world PPP; two lane labels; one growth multiple) | `LOG.md` |
 | Review passes, eighth edition | **4** (logic/math · figures · literary · editorial) | [measured this session] |
@@ -72,6 +73,7 @@ denominator.
 | **Context compaction** | This conversation underwent context compaction (the working summary notes up to **2** compaction events); the project's decided state survived because it was written to durable artifacts (manuscript, `data.py`, docs) rather than held in chat memory. |
 | **Chat-to-chat handoff** | Survived a **forced** handoff in edition 4, which hit the platform's 100-image / PDF-render limit mid-build. The bundle + `HANDOFF.md` + past-chat-search reflex were the recovery; they are now standing discipline. |
 | **Single-chat loss** | Mitigated: the repository (source + docs + skills + verified numbers) is self-sufficient. `docs/source-research.md` carries the verified numbers so no figure is ever re-derived from memory. |
+| **Cross-platform reproducibility** | Verified on a second platform (Windows 11, 2026-06-02): the 52-check suite, the `content.py` parse, and the interactive HTML reproduce deterministically; PDF/audio build natively via MSYS2 GTK with display + mono fonts embedded. One residual body-font fallback documented (`LOG.md` O-03); the canonical PDF stays the faithful reference. |
 | **Platform mortality** | Active external links only to high-continuity sources (IMF, World Bank, UN, Maddison). Earlier-LLM provenance recorded as historical fact in the colophon, not as a live dependency. |
 | **Data staleness** | The living mechanism (`weight-of-nations-data-refresh` + `.github/workflows/living-update.yml`) refreshes `data.py` on each release and rebuilds; the 52 checks block a bad refresh. |
 | **Argument drift** | Guarded by invariant 9: only a *direction* change (not a decimal) reopens the prose, and only through the review body. |

@@ -14,6 +14,27 @@ where known.*
 
 ---
 
+## Living-repository operations — Windows portability (2026-06-02)
+
+Migrating the bundle to a Windows workstation surfaced two **operational** catches in the build
+tooling — neither in the data nor the prose. Both are environment-portability issues; the canonical
+editions and the 52-check suite were unaffected.
+
+| # | Catch | Sev | Where | Resolution | Standing rule |
+|---|---|---|---|---|---|
+| O-02 | **`check_consistency.py` crashed on a Windows console.** The multiplier check prints `≈` (U+2248); the default cp1252 console codec raised `UnicodeEncodeError` and aborted the suite mid-run — a platform quirk, not a data error. | 3 | build tooling | Reconfigure stdout/stderr to UTF-8 at startup (commit `8003029`); suite runs on any platform without a `PYTHONUTF8` env var. Still 52/0. | 🔒 build entry points must not assume a UTF-8 console. |
+| O-03 | **PDF/audio fell back to system fonts off the authoring box.** `build_pdf.py` defaulted `FONTS` to a stale authoring path (`/home/claude/…`) present on no checkout, so the bundled woff2 were never used by default; its `@font-face` `src` also used a POSIX-only `file://` URL (malformed on Windows). | 3 | build tooling | Default `FONTS` to the bundled repo path; emit URLs via `pathlib.Path(p).as_uri()` (commit `020eaa6`). Fraunces + IBM Plex Mono now embed cross-platform. | 🔒 bundled assets are addressed by repo-relative path + portable URIs, never an absolute authoring path. |
+
+**Residual (open).** On a freshly-installed MSYS2 Pango/fontconfig (WeasyPrint's Windows native
+stack), the body font **IBM Plex Sans** can still fall back: the @fontsource per-weight files name
+each weight as a distinct internal family (`IBM Plex Sans` / `…Medium` / `…SemiBold`), which that
+stack mis-matches against the single `@font-face` family `Plex` (the rendered PDF runs ~3 pages
+long). Display (Fraunces) and mono (Plex Mono) are unaffected. The **canonical committed PDF is the
+faithful reference** (built on the original pipeline); a Windows-faithful rebuild is a follow-up.
+Recorded so it is not rediscovered.
+
+---
+
 ## Eighth edition — finalisation pass (2026-06-01)
 
 The four-pass finalisation surfaced ten catches, all in the coda **data layer**; none in the
