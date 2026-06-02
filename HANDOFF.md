@@ -81,6 +81,29 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 
 ## 6 · Open items (keep current)
 
+**Next working session (planned with the author, 2026-06-02 — begins once the cover / publishing
+copy lands):**
+
+0. **Publishing copy is incoming.** The author is finishing the **cover** on ChatGPT + the
+   chat-advisor; that cover version is the **canonical publishing copy**. First action: integrate it
+   (front cover + any front matter, and the masthead "Seventh (fused & panel-reviewed)" → eighth-edition
+   correction flagged in `CHANGELOG.md` v8.5), then tag the published release.
+1. **Build the website.** Stand up the public site — GitHub Pages, or a dedicated domain / subpage of
+   `hulkiokantabak.com` — serving the interactive HTML edition; add a Pages-deploy step to the
+   workflow so the site rebuilds with the repo. (Supersedes the bare "enable Pages" standing item.)
+2. **Make the repo fork-ready** for outside contributors. Turn `CONTRIBUTING.md` into a concrete
+   fork → edit `build/data.py` → run the 52-check suite → rebuild → open-a-PR walkthrough; add a
+   `.gitattributes` (LF for code/text) so line endings stay stable across Windows/macOS/Linux clones
+   (this machine is `core.autocrlf=true`); confirm the living-update workflow opens PRs (needs the
+   Actions write/PR permission below); consider issue/PR templates. Goal: a stranger can fork,
+   update, and change it without reading this whole file.
+3. **Make the one-year revisit easy.** Walk the `weight-of-nations-data-refresh` ritual end-to-end
+   (`update_data.py --validate` → suite → rebuild → decimals-vs-direction → version bump) and smooth
+   any friction, so a future IMF/WDI/UN update is a short, safe pass. Dry-run before the October 2026
+   IMF WEO.
+
+**Standing items:**
+
 - [x] **Release tags v8.0–v8.3 created** and **repository pushed to GitHub** (2026-06-02):
   `https://github.com/hulkiokantabak/weight-of-nations` (`main` + tags). *Next: in repo Settings →
   Actions → General, enable "Read and write permissions" + allow Actions to create PRs, so the
