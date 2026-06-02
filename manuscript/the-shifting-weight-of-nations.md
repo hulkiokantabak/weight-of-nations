@@ -6,7 +6,7 @@
 **Inspired by** Stephen Kotkin on Hoover's *Uncommon Knowledge* (host Peter Robinson) — youtube.com/watch?v=gBEdxb8ei_0
 **Span** 1500–2026, with a 2050 demographic horizon
 **Lenses** deep history · manufacturing · technology · geopolitics · the future
-**Edition** Seventh (fused & panel-reviewed) · June 2026
+**Edition** Eighth (first living edition) · June 2026
 
 ---
 

@@ -12,7 +12,7 @@ SECTIONS = [{'k': 'masthead',
                 'youtube.com/watch?v=gBEdxb8ei_0'),
                ('Span', '1500–2026, with a 2050 demographic horizon'),
                ('Lenses', 'deep history · manufacturing · technology · geopolitics · the future'),
-               ('Edition', 'Seventh (fused &amp; panel-reviewed) · June 2026')]},
+               ('Edition', 'Eighth (first living edition) · June 2026')]},
  {'k': 'argument',
   'hyp': "A nation's share of world GDP is not one number but three multiplied together — its share of the world's "
          'people, its price level (the ruler you measure with), and its productivity (output per person relative to '
