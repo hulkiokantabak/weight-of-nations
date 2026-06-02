@@ -15,4 +15,29 @@ Thumbs.db
 # Pages build dir
 _site/
 
+# Secrets / credentials — never commit these to a public repository.
+# (Defensive: nothing of this kind is tracked today; this keeps it that way.)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+*.crt
+id_rsa
+id_ed25519
+.netrc
+*.tfvars
+secrets.*
+credentials.*
+service-account*.json
+*token*.json
+*.secret
+
+# Local-only working space — kept out of the public repo by design.
+# Drop private notes, draft handoffs, or anything not meant for publication here.
+local-notes/
+private/
+
 # Do NOT ignore outputs/ — the rendered editions are part of the living document.
