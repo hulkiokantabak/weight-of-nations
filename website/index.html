@@ -73,7 +73,7 @@
   @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
   body{margin:0; background:var(--paper-2); color:var(--ink);
     font-family:'IBM Plex Sans',system-ui,sans-serif; line-height:1.6;
-    -webkit-font-smoothing:antialiased;}
+    -webkit-font-smoothing:antialiased; overflow-x:hidden;}
   .skip{position:absolute; left:-9999px; top:0; background:var(--ink); color:#fff; padding:.6em 1em; z-index:10}
   .skip:focus{left:8px; top:8px}
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
@@ -127,7 +127,7 @@
     text-transform:uppercase; color:var(--accent)}
   .ed h3{font-size:1.12rem; margin:.35em 0 .3em}
   .ed p{font-size:.9rem; color:var(--ink-soft); margin:0 0 16px; flex:1}
-  .ed a.go{font-family:'IBM Plex Mono',monospace; font-size:.8rem; font-weight:500}
+  .ed a.go{font-family:'IBM Plex Mono',monospace; font-size:.8rem; font-weight:500; display:inline-block; padding:6px 0}
 
   /* living */
   .layers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:22px 0}
@@ -145,6 +145,7 @@
   footer h4{font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.14em;
     text-transform:uppercase; color:var(--ink-faint); margin:0 0 .7em}
   footer p{margin:.2em 0}
+  footer a{display:inline-block; padding:3px 0}
   .disclaimer{font-size:.78rem; color:var(--ink-faint); border-top:1px solid var(--rule);
     margin-top:26px; padding-top:16px}
 
