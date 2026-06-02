@@ -90,11 +90,14 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
    reads "Seventh (fused & panel-reviewed)" → correct to eighth edition in the publishing pipeline
    (faithful fonts) before wide release; (b) add a reproducible cover-merge step (cover.png + essay
    PDF → with-cover PDF) so the publishing edition is a build output, not a hand-assembled input.
-1. **Website built (2026-06-02).** ✅ Public site in `website/` — landing `index.html` (read online /
-   download / fork / cite, in the essay's type + palette) plus the interactive edition — deployed by
-   `.github/workflows/pages.yml`. **One-time setup remaining (author):** repo *Settings → Pages →
-   Build and deployment → Source → GitHub Actions*; the workflow then deploys on every push to `main`
-   and on manual run. Optional: attach a `hulkiokantabak.com` subpage as a custom domain.
+1. **Website built & LIVE (2026-06-02).** ✅ Public site at
+   **https://hulkiokantabak.github.io/weight-of-nations/** — landing `index.html` (read online /
+   download / fork / cite, in the essay's type + palette) plus the interactive edition, in
+   `website/`, deployed by `.github/workflows/pages.yml`. Pages is enabled with **Source = GitHub
+   Actions**; the workflow auto-deploys on every push to `main` (paths `website/**` or the interactive
+   edition) and on manual run, copying the current `outputs/` edition in at deploy time. Optional
+   polish: a custom `hulkiokantabak.com` subpage (Settings → Pages → Custom domain); a future
+   data-refresh will redeploy the site automatically.
 2. **Make the repo fork-ready** for outside contributors. Turn `CONTRIBUTING.md` into a concrete
    fork → edit `build/data.py` → run the 52-check suite → rebuild → open-a-PR walkthrough; add a
    `.gitattributes` (LF for code/text) so line endings stay stable across Windows/macOS/Linux clones
