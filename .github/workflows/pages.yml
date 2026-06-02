@@ -33,10 +33,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Assemble site (landing + current interactive edition)
+        env:
+          # Privacy-friendly page analytics for the deployed site.
+          GC_TAG: '<script data-goatcounter="https://hulkiokantabak.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>'
         run: |
           mkdir -p _site
           cp -r website/. _site/
           cp outputs/the-shifting-weight-of-nations.html _site/edition.html
+          # Analytics belongs to the deployed instance, not the citable/forkable edition
+          # artifact in outputs/ (GROUND-RULES: never hand-edit a rendered edition). The
+          # landing and 404 pages carry the GoatCounter tag in their source; the edition is
+          # generated, so inject the same tag into the deployed copy here. Idempotent — the
+          # guard prevents a second (double-counting) tag if a future build ever embeds it.
+          if ! grep -qi goatcounter _site/edition.html; then
+            perl -0777 -i -pe 'BEGIN{$g=$ENV{GC_TAG}} s#(.*)</body>#$1$g</body>#s' _site/edition.html
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
