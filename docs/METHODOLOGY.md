@@ -145,6 +145,24 @@ a data refresh touches only `data.py`. When a new IMF, World Bank, or UN release
 numbers are updated in one place, the 52 checks re-run, and all three editions rebuild — and the
 prose is *not* rewritten, because methods and directions do not expire when a denominator is
 revised. A move large enough to change a *direction* (a plateau becoming a decline; a laggard
+beginning to converge) is no longer a refresh but a new analytical edition, and goes back through
+the review body before it ships.
+
+---
+
+## 6 · Post-v8.5: publication, the live site, and cross-platform rendering
+
+The eighth edition was finished as a published object. A cover was produced (on ChatGPT, refined
+with the chat-advisor) and committed as a source asset; `build/build_cover.py` prepends it to the
+typeset interior to make the with-cover PDF, while the no-cover interior and the standalone cover
+PNG stay separate for publishers (e.g. Google Books) that take a cover on its own. A reader-facing
+website (`website/`) serves the interactive edition and auto-redeploys from the build via GitHub
+Pages, so the live site tracks the document. Faithful PDF rendering was made reproducible on
+**Windows** (`build/win_fonts.py` unifies the @fontsource IBM Plex Sans weights for the MSYS2
+fontconfig; a `'IBM Plex Sans'` CSS fallback in `build_pdf.py` resolves it — a no-op on Linux/CI).
+The book carries its own live-site link on page 1 and in Appendix F. None of this touched the
+analysis: the methods and directions are unchanged; the additions are presentation and
+distribution.
 beginning to converge) is treated as a new analytical edition and routed back through the review
 body first. The ritual and the field-by-field source map live in the
 `weight-of-nations-data-refresh` skill; the automation lives in `.github/workflows/`.

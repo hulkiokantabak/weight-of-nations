@@ -107,12 +107,15 @@ weight-of-nations/
 │   ├── check_consistency.py   # the 52-check suite (run before every build)
 │   ├── update_data.py         # data-refresh harness (see data-refresh skill)
 │   ├── build_pdf.py / build_html.py / build_audio.py
+│   ├── build_cover.py        # prepend the cover -> with-cover PDF (compact JPEG; WON_COVER_LOSSLESS)
+│   ├── win_fonts.py          # Windows-only: faithful IBM Plex Sans for WeasyPrint
 │   ├── common.py              # shared block renderer
 │   ├── ttf/  fonts/           # bundled fonts (matplotlib TTF + WeasyPrint woff2)
-│   └── covers/
+│   └── covers/               # make_covers.py + the canonical cover PNG
 ├── manuscript/
 │   └── the-shifting-weight-of-nations.md   # the final copy (edit here, then re-parse)
-├── outputs/                   # the three rendered editions (canonical slug)
+├── outputs/                   # the rendered editions (interactive, print ±cover, audio)
+├── website/                   # GitHub Pages site (landing + interactive edition); live at github.io
 ├── docs/
 │   ├── METHODOLOGY.md         # how each edition was made
 │   ├── METRICS.md             # editions, checks, catches, prompts, survival
@@ -121,7 +124,7 @@ weight-of-nations/
 │   └── README-rebuild.md      # environment + build commands
 ├── skills/                    # this skill + panel + data-refresh
 ├── publication/PUBLISH-GUIDE.md
-└── .github/workflows/living-update.yml   # the self-update automation
+└── .github/workflows/   # living-update.yml (self-update PR) + pages.yml (deploy the live site)
 ```
 
 ---

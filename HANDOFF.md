@@ -3,7 +3,7 @@
 **You are the new chair (or the Code executor).** This is the entry point. Read it first.
 
 - **Project:** a skeptical, interactive data essay on five centuries of world-GDP shares.
-- **Edition / version:** **8th — first living edition · v8.5** (2026-06-02; v8.5 = long-table layout fix + Appendix F living-doc prose + authorship co-credit; editions rebuilt, PDF 62 pp).
+- **Edition / version:** **8th — first living edition · v8.5** (2026-06-02; v8.5 = long-table layout fix + Appendix F living-doc prose + authorship co-credit; editions rebuilt, PDF 62 pp). *Post-v8.5 (2026-06-02): published with cover; web link added to page 1 + Appendix F; Appendix E metrics corrected; cover compacted; README rebuilt in house style — see `CHANGELOG.md`.*
 - **State:** finalised and migrated to this repository. Suite green (52/0). Three editions built.
   *2026-06-02 (Windows workstation):* reproducibility verified (suite + parser + HTML rebuild
   deterministically; PDF/audio build natively via MSYS2 GTK); build tooling hardened for Windows
@@ -81,7 +81,7 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 
 ## 6 · Open items (keep current)
 
-**Next working session (2026-06-02 — cover + website done; fork-readiness + 1-year-revisit remain):**
+**Recently done & open items (2026-06-02 publication round; the panel ran a 3-round retrospective, logged in `docs/LOG.md`):**
 
 0. **Publishing copy received & committed (2026-06-02).** ✅ The author's cover
    (`build/covers/the-shifting-weight-of-nations-cover.png`) and the **with-cover publishing PDF**
@@ -92,11 +92,12 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
    the @fontsource per-weight Plex Sans for the MSYS2 fontconfig) + a `'IBM Plex Sans'` CSS fallback
    in `build_pdf.py`; the live site redeploys via the Pages workflow on push. (b) ✅ reproducible
    cover-merge is `build/build_cover.py` (cover image + essay PDF → with-cover, 63 pp).
-   **Still open:** (c) the manuscript Appendix E "Build size" self-metrics are stale (~15,400 words /
-   59 pages / ~3,600 lines → current ~17,100 / 62 / ~3,860) — a prose correction needing author
-   sign-off + a re-render. *(Note: this Windows print PDF uses minor Lucida/Corsiva fallbacks for a
-   few symbol/edge-italic glyphs, as the canonical did with DejaVu; the publishing pipeline remains
-   the option for a zero-fallback master.)*
+   (c) ✅ Appendix E "Build size" metrics corrected (~4,000 lines / ~17,200 words / 62 pp).
+   (d) ✅ **web link added to the book** — page-1 masthead + Appendix F (live site + repo URLs).
+   (e) ✅ cover compacted to a JPEG embed (`build_cover.py`; with-cover 5.1→2.6 MB; set
+   `WON_COVER_LOSSLESS=1` for a lossless print master; the standalone cover PNG stays the high-res
+   asset). (f) ✅ README rebuilt in the author's house style. *(The Windows print PDF still carries
+   minor Lucida/Corsiva fallbacks for a few symbol/edge-italic glyphs — see the zero-fallback to-do.)*
 1. **Website built & LIVE (2026-06-02).** ✅ Public site at
    **https://hulkiokantabak.github.io/weight-of-nations/** — landing `index.html` (read online /
    download / fork / cite, in the essay's type + palette) plus the interactive edition, in
@@ -125,12 +126,10 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 - [ ] **Publish** the editions to Google Books, Substack, and Medium — see
   `publication/PUBLISH-GUIDE.md`. *Requires the author's accounts; the chair prepares, the author
   publishes.*
-- [ ] **Enable GitHub Pages** (optional, toward a dedicated website) — serve the interactive
-  edition as the site; workflow already builds it.
-- [ ] **Windows-faithful PDF/audio (optional).** PDF/audio build natively on Windows via MSYS2 GTK,
-  but the body font (IBM Plex Sans) falls back under fresh MSYS2 fontconfig (+3 pp; `docs/LOG.md`
-  O-03). The canonical committed PDF is the faithful reference; rebuild on the original/CI pipeline
-  for publication-grade output.
+- [ ] **Zero-fallback print master** (before any paid print run) — render the print PDF on Linux/CI
+  or the publishing pipeline (the Windows PDF carries minor Lucida/Corsiva edge-glyph fallbacks). *[panel]*
+- [ ] **Keep the claim-registry / `source-research.md` in sync** on each data refresh — ruler-labeled
+  public claims current. *[panel]*
 - [ ] First scheduled **data refresh** will be the next IMF WEO (October 2026) — dry-run the
   living-update workflow before then.
 

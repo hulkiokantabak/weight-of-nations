@@ -6,7 +6,7 @@ transcript) it is marked **[measured]**; where it is reconstructed from artifact
 chats it is marked **[reconstructed]**; approximate values are marked **≈**. Nothing here is
 invented to look complete — unknown counts are stated as unknown.*
 
-Snapshot date: **2026-06-02** (Windows housekeeping + v8.5 layout/prose/authorship pass) · Edition: **8th (first living edition)** · Version: **v8.5**
+Snapshot date: **2026-06-02** (v8.5 + post-v8.5 publication round: cover, live website, in-book web link, Appendix E correction) · Edition: **8th (first living edition)** · Version: **v8.5**
 (v8.2 adds the design-consolidation docs in `living-document.md` + governance files; essay unchanged since v8.0.)
 Project timeline: work began **Sunday, 31 May 2026**.
 
@@ -16,13 +16,13 @@ Project timeline: work began **Sunday, 31 May 2026**.
 
 | Metric | Value | Source of measurement |
 |---|---|---|
-| Manuscript length | **17,134 words** | `wc -w` on the v8.5 manuscript (the prior 16,713 was a stale measurement; +65 words in v8.5's Appendix F) |
+| Manuscript length | **~17,200 words** | `wc -w` on the manuscript (post-v8.5: + the in-book web link in the masthead and Appendix F) |
 | Figures | **22** chart placements | renderer count in `charts.py`; figure callouts in manuscript |
 | Reference tables | **3** (B1–B3) | manuscript |
 | Print edition | **62 pages** PDF, 2.32 MB | `pypdf` page count (v8.5 reclaimed an orphan page; was 63) |
 | Interactive edition | **16** live canvases, ≈0.88 MB | `<canvas>` count in the HTML |
 | Screen-reader edition | 1 TTS PDF, ≈0.15 MB | `stat` on output |
-| Build pipeline | **3,862 lines** of Python | `build/*.py` line count (was 3,827; +Windows-portability hardening) |
+| Build pipeline | **~4,000 lines** of Python | `build/*.py` line count (+ `build_cover.py`, `win_fonts.py`) |
 | Consistency suite | **52 checks**, 0 failing | `check_consistency.py` result |
 | Project skills | **3** SKILL.md files, **487 lines** total | `wc -l skills/*/SKILL.md` |
 | Review-body personas | **24** (9 standing experts + 15 on-call advisors) | `weight-of-nations-panel` skill |

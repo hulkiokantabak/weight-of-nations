@@ -14,6 +14,21 @@ where known.*
 
 ---
 
+## Publication round + panel retrospective (2026-06-02)
+
+Published with cover, three editions, and a live site; added the website link to the book (masthead +
+Appendix F); corrected the Appendix E self-metrics; compacted the cover (with-cover 5.1→2.6 MB). A
+3-round panel retrospective surfaced the prioritized to-dos now in `HANDOFF.md` §6 (dry-run the
+living-update before the October 2026 IMF WEO is #1).
+
+**Learning (escalated to practice).** A value that *looks* like it comes from the single source of
+truth may be **hardcoded in the generator**: the visible "SEVENTH EDITION" masthead kicker lived in
+`parse_manuscript.py`, not the manuscript, so a manuscript-only fix didn't move it. 🔒 Standing rule:
+when a *rendered* value is wrong, grep the **generated** artifact (`content.py`) and the parser, not
+only the manuscript/data source.
+
+---
+
 ## v8.5 — layout (keep-with-next for tables) + living-document prose (2026-06-02)
 
 An author-authorised chat-advisor session generalised the keep-with-next grouper (`build/common.py`)

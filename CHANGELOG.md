@@ -6,6 +6,20 @@ a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis 
 Every release is tagged; history is never silently overwritten. Each entry names the change and,
 for data, its source and ruler labels.
 
+## Book web link + Appendix E correction + compact cover (2026-06-02, post-v8.5)
+- PROSE: added the website link to the book — a "Web" field on the page-1 masthead
+  (`hulkiokantabak.github.io/weight-of-nations`) and the live-site + repo URLs in Appendix F. Per the
+  panel's both-places advice.
+- PROSE: corrected the Appendix E "Build size" self-metrics to current (~4,000 lines of Python,
+  ~17,200 words, 62-pp PDF; were the stale ~3,600 / ~15,400 / 59 pp).
+- COVER: `build_cover.py` now embeds the cover as a compact JPEG by default — the with-cover PDF
+  drops from 5.1 MB to 2.6 MB. `WON_COVER_LOSSLESS=1` restores the lossless print master; the
+  standalone cover PNG remains the high-res asset (Google Books can use it separately).
+- README rebuilt in the author's house style (badges, a "Read It" links block, an editions table
+  noting the distinct uses of with-cover / no-cover / audio). Re-rendered all editions; suite 52/0.
+- Panel: a 3-round retrospective ran; learnings + a prioritized to-do list are in `docs/LOG.md` and
+  `HANDOFF.md` §6.
+
 ## Editions re-rendered — Eighth masthead + faithful Windows render (2026-06-02, post-v8.5)
 - Re-rendered all three editions and the with-cover PDF so the masthead reads "Eighth (first living
   edition)" (was the stale "Seventh" label). The typeset PDF is **faithful** (62 pp; real IBM Plex
