@@ -6,6 +6,15 @@ a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis 
 Every release is tagged; history is never silently overwritten. Each entry names the change and,
 for data, its source and ruler labels.
 
+## Editions re-rendered — Eighth masthead + faithful Windows render (2026-06-02, post-v8.5)
+- Re-rendered all three editions and the with-cover PDF so the masthead reads "Eighth (first living
+  edition)" (was the stale "Seventh" label). The typeset PDF is **faithful** (62 pp; real IBM Plex
+  Sans at every weight + Fraunces + IBM Plex Mono), achieved on Windows via `build/win_fonts.py`
+  (rebuilds the @fontsource per-weight Plex Sans into one fontconfig family) plus an
+  `'IBM Plex Sans'` CSS fallback in `build_pdf.py` (a no-op on Linux/CI, where the woff2 load
+  directly). Added `build/build_cover.py` — a reproducible cover-merge (cover image + essay PDF →
+  with-cover). Live site redeployed. No change to data, analysis, or figures; suite 52/0.
+
 ## Fixes — masthead label + script/doc portability (2026-06-02, post-v8.5)
 - MASTHEAD: corrected the edition label "Seventh" → "Eighth (first living edition)" at **both**
   source points — the manuscript "Edition" field and the hardcoded kicker in `parse_manuscript.py`

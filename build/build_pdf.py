@@ -46,7 +46,7 @@ PRINT_CSS = """
 @page:first{ @bottom-left{content:""} @bottom-right{content:""} }
 *{box-sizing:border-box}
 html{font-size:10.6pt}
-body{margin:0;color:var(--ink);background:#fff;font-family:'Plex',sans-serif;line-height:1.5;}
+body{margin:0;color:var(--ink);background:#fff;font-family:'Plex','IBM Plex Sans',sans-serif;line-height:1.5;}
 p{margin:0 0 .72em;orphans:2;widows:2;}
 h1,h2,h3,h4{font-family:'Fraunces',Georgia,serif;font-weight:600;color:var(--ink);}
 i,em{font-style:italic}
@@ -81,7 +81,7 @@ h3{font-size:13pt;margin:5mm 0 1.5mm;break-after:avoid}
 .idt-lhs{font-family:'Fraunces',serif;font-size:10pt;line-height:1.2;margin:0 2mm}
 .idt-eq,.idt-x{font-family:'Fraunces',serif;font-size:15pt;color:var(--ink-faint);margin:0 2mm}
 .idt-box{font-size:8.4pt;line-height:1.25;color:var(--ink-soft);padding:3mm 4mm;border-radius:3pt;border:.8pt solid var(--rule);margin:1mm}
-.idt-box b{font-family:'Plex';font-weight:600;color:var(--ink);font-size:9.4pt}
+.idt-box b{font-family:'Plex','IBM Plex Sans';font-weight:600;color:var(--ink);font-size:9.4pt}
 .idt-sub{font-size:7.4pt;color:var(--ink-faint)}
 .b-pop{background:rgba(98,112,47,.10)}.b-price{background:rgba(47,85,115,.10)}.b-prod{background:rgba(153,60,29,.10);border-color:rgba(153,60,29,.35)}
 .idt-note{font-size:8.6pt;color:var(--ink-faint);margin:4mm auto 0;max-width:40em}

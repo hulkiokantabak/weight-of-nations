@@ -26,9 +26,14 @@ interpreter (`python`). Two extra steps enable the **PDF/audio** editions:
   to `curl … -k`; package GPG signatures are still verified by `SigLevel = Required`.)*
 - **Console encoding.** `check_consistency.py` self-reconfigures stdout to UTF-8; if you run other
   scripts that print non-ASCII, set `PYTHONUTF8=1`.
-- **Known residual:** the body font (IBM Plex Sans) can fall back under fresh MSYS2 fontconfig
-  (rendered PDF ~3 pp long); the canonical committed PDF is the faithful reference (see
-  `docs/LOG.md` O-03).
+- **Faithful body font.** The @fontsource per-weight IBM Plex Sans woff2 don't resolve under the
+  MSYS2 Pango/fontconfig stack via `@font-face`. Run `python build/win_fonts.py` once: it rebuilds
+  them as a single fontconfig family, which `build_pdf.py`'s CSS fallback (`'Plex','IBM Plex Sans'`)
+  then resolves. With this the Windows PDF renders faithfully (verified: 62 pp, real IBM Plex Sans at
+  every weight). Not needed on Linux/CI, where the woff2 `@font-face` load directly. (History:
+  `docs/LOG.md` O-03.)
+- **The cover / publishing PDF.** `python build/build_cover.py` prepends the cover image
+  (`build/covers/the-shifting-weight-of-nations-cover.png`) to the typeset essay → the with-cover PDF.
 
 ## 2 · Stage the fonts
 

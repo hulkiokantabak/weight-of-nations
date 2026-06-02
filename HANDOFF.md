@@ -86,15 +86,17 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 0. **Publishing copy received & committed (2026-06-02).** ✅ The author's cover
    (`build/covers/the-shifting-weight-of-nations-cover.png`) and the **with-cover publishing PDF**
    (`outputs/...-with-cover.pdf`, 63 pp = cover + the 62-pp essay) are committed; the without-cover
-   and audio editions were byte-identical to the v8.5 build outputs. **Still open:** (a) the masthead label is now **fixed at the source** — the
-   manuscript "Edition" field *and* the hardcoded `parse_manuscript.py` kicker both read "eighth
-   edition" (commit `52cbd00` + the bug-pass commit); the rendered editions and the live site still
-   show "Seventh" until a **faithful re-render** in the publishing pipeline (the PDF must not be
-   rebuilt on this Windows box — font fallback), after which replace `outputs/` and re-upload (the
-   site then auto-redeploys). (b) add a reproducible cover-merge step (cover.png + essay PDF →
-   with-cover PDF) so the publishing edition is a build output, not a hand-assembled input. (c) the
-   manuscript Appendix E "Build size" self-metrics are stale (~15,400 words / 59 pages / ~3,600 lines
-   → current ~17,100 / 62 / ~3,860) — a prose correction needing author sign-off + a re-render.
+   and audio editions were byte-identical to the v8.5 build outputs. **Done since:** (a) ✅ masthead corrected (manuscript "Edition" field + the hardcoded
+   `parse_manuscript.py` kicker → "eighth edition") and all three editions **re-rendered faithfully
+   on Windows** — 62-pp PDF with real IBM Plex Sans at every weight, via `build/win_fonts.py` (unifies
+   the @fontsource per-weight Plex Sans for the MSYS2 fontconfig) + a `'IBM Plex Sans'` CSS fallback
+   in `build_pdf.py`; the live site redeploys via the Pages workflow on push. (b) ✅ reproducible
+   cover-merge is `build/build_cover.py` (cover image + essay PDF → with-cover, 63 pp).
+   **Still open:** (c) the manuscript Appendix E "Build size" self-metrics are stale (~15,400 words /
+   59 pages / ~3,600 lines → current ~17,100 / 62 / ~3,860) — a prose correction needing author
+   sign-off + a re-render. *(Note: this Windows print PDF uses minor Lucida/Corsiva fallbacks for a
+   few symbol/edge-italic glyphs, as the canonical did with DejaVu; the publishing pipeline remains
+   the option for a zero-fallback master.)*
 1. **Website built & LIVE (2026-06-02).** ✅ Public site at
    **https://hulkiokantabak.github.io/weight-of-nations/** — landing `index.html` (read online /
    download / fork / cite, in the essay's type + palette) plus the interactive edition, in
