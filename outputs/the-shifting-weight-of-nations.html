@@ -6,7 +6,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
 <style>
 :root{
-  --paper:#F4EEE2;--paper-2:#FBF7EF;--card:#FCFAF4;--ink:#221C17;--ink-soft:#5C534A;--ink-faint:#8C8273;
+  --paper:#F4EEE2;--paper-2:#FBF7EF;--card:#FCFAF4;--ink:#221C17;--ink-soft:#5C534A;--ink-faint:#6E6456;
   --rule:#DCD2C1;--rule-soft:#E7DECF;--accent:#993C1D;--accent-2:#B9743A;
   --us:#A23B26;--cn:#D29329;--eu:#2F5573;--in:#2E8B6F;--jp:#8A4F7D;--uk:#C77B43;--ru:#6E7B3E;--row:#A79D90;
   --shadow:0 1px 0 rgba(34,28,23,.04),0 18px 40px -28px rgba(34,28,23,.35);
@@ -14,7 +14,7 @@
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;
-  font-size:17px;line-height:1.62;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;position:relative}
+  font-size:17px;line-height:1.62;letter-spacing:.005em;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;position:relative;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;mix-blend-mode:multiply;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/></svg>")}
 .wrap{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:0 22px 120px}
@@ -71,14 +71,17 @@ h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.28rem;margin:1.7em 0
 .figure{margin:40px 0 30px;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:26px 26px 22px;box-shadow:var(--shadow);opacity:0;transform:translateY(18px)}
 .figure.in{animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.figure{opacity:1;transform:none;animation:none}}
 .fig-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px}
 .fig-num{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
 .fig-title{font-family:"Fraunces",serif;font-weight:600;font-size:1.35rem;line-height:1.15;margin:.15em 0 .1em}
 .fig-sub{font-size:.92rem;color:var(--ink-faint);margin:0 0 16px}
 .chart-box{position:relative;width:100%;height:480px}
 .chart-box.chart-static{height:auto}
+.chart-box canvas{max-width:100%}
 .chart-img{width:100%;height:auto;display:block;border-radius:6px}
 @media(max-width:600px){.chart-box{height:400px}}
+@media(max-width:380px){.chart-box{height:340px}}
 .fig-caption{font-size:.86rem;color:var(--ink-soft);line-height:1.55;margin:16px 2px 0;max-width:none}
 .fig-caption b{color:var(--ink)}
 .hint{font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-faint);letter-spacing:.02em}
@@ -460,7 +463,7 @@ const BUILD={
 
 const done={};
 const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){const id=en.target.id.replace('fig_','');en.target.classList.add('in');
-  if(BUILD[id]&&!done[id]){done[id]=true;try{BUILD[id]();}catch(e){console.error(id,e);}} if(id==='nom')wireWest(); io.unobserve(en.target);}});},{threshold:.12});
+  if(BUILD[id]&&!done[id]){done[id]=true;try{BUILD[id]();requestAnimationFrame(()=>{const cc=(window.Chart&&Chart.getChart)?Chart.getChart('c_'+id):null;if(cc)cc.resize();});}catch(e){console.error(id,e);}} if(id==='nom')wireWest(); io.unobserve(en.target);}});},{threshold:.12});
 Object.keys(BUILD).forEach(k=>{const el=document.getElementById('fig_'+k);if(el)io.observe(el);});
 
 function wireWest(){const btn=document.getElementById('westBtn');if(!btn||btn._wired)return;btn._wired=true;
