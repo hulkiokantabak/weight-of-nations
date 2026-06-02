@@ -50,7 +50,14 @@
   "url": "https://hulkiokantabak.github.io/weight-of-nations/",
   "license": "https://creativecommons.org/licenses/by/4.0/",
   "isAccessibleForFree": true,
-  "publisher": { "@type": "Person", "name": "Hulki Okan Tabak" }
+  "publisher": { "@type": "Person", "name": "Hulki Okan Tabak" },
+  "sameAs": [
+    "https://play.google.com/store/books/details?id=S8_gEQAAQBAJ",
+    "https://hulkiokantabak.substack.com/p/the-shifting-weight-of-nations",
+    "https://medium.com/@hotabak/the-shifting-weight-of-nations-06056c434d2c",
+    "https://www.linkedin.com/pulse/shifting-weight-nations-hulki-okan-tabak-5ilrf/",
+    "https://x.com/hotabak/status/2061789739074597278"
+  ]
 }
 </script>
 
@@ -95,10 +102,12 @@
   .hero h1{font-size:clamp(2.3rem,5.5vw,3.4rem); letter-spacing:-.01em; margin:.35em 0 .25em}
   .hero h1 .of{font-weight:400; font-style:italic; color:var(--accent)}
   .subtitle{font-family:'Fraunces',serif; font-style:italic; font-size:1.18rem;
-    color:var(--ink-soft); margin:0 0 1em; max-width:34ch}
+    color:var(--ink-soft); margin:0 0 .35em; max-width:34ch}
+  .payoff{font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:1.06rem;
+    color:var(--accent); margin:0 0 1em}
   .byline{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--ink-faint);
     border-top:1px solid var(--rule); padding-top:14px; margin-top:6px}
-  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px}
+  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:22px}
   .btn{display:inline-block; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:.92rem;
     padding:11px 18px; border-radius:4px; border:1.4px solid var(--accent); transition:.15s}
   .btn-primary{background:var(--accent); color:#fff}
@@ -125,11 +134,18 @@
     border-radius:3px; padding:20px 20px 22px; display:flex; flex-direction:column}
   .ed .tag{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.12em;
     text-transform:uppercase; color:var(--accent)}
-  .ed h3{font-size:1.12rem; margin:.35em 0 .3em}
+  .ed h3{font-size:1.12rem; margin:.35em 0 .1em}
+  .ed .rt{font-family:'IBM Plex Mono',monospace; font-size:.66rem; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--ink-faint); margin:0 0 .5em}
   .ed p{font-size:.9rem; color:var(--ink-soft); margin:0 0 16px; flex:1}
   .ed a.go{font-family:'IBM Plex Mono',monospace; font-size:.8rem; font-weight:500; display:inline-block; padding:6px 0}
+  .start{font-size:.96rem; color:var(--ink-soft); margin:20px 0 0}
 
   /* living */
+  .status{background:var(--card); border:1px solid var(--rule); border-radius:3px;
+    padding:14px 18px; margin:4px 0 24px; font-family:'IBM Plex Mono',monospace;
+    font-size:.74rem; line-height:1.85; letter-spacing:.015em; color:var(--ink-soft)}
+  .status b{color:var(--ink); font-weight:500}
   .layers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:22px 0}
   .layer{padding:16px 18px; background:var(--paper); border:1px solid var(--rule); border-radius:3px}
   .layer .n{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:.8rem}
@@ -139,6 +155,15 @@
     padding:22px 26px; margin-top:8px}
   .fork code{font-family:'IBM Plex Mono',monospace; background:var(--paper); border:1px solid var(--rule-soft);
     border-radius:3px; padding:.12em .45em; font-size:.85em}
+  .fork .gov{border-top:1px solid var(--rule-soft); margin-top:14px; padding-top:14px; font-size:.95rem}
+
+  /* read it elsewhere */
+  .elsewhere{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-top:22px}
+  .elsewhere a{display:flex; align-items:center; justify-content:center; text-align:center;
+    min-height:56px; padding:12px 10px; background:var(--card); border:1px solid var(--rule);
+    border-radius:3px; font-family:'IBM Plex Mono',monospace; font-size:.78rem; font-weight:500; color:var(--ink)}
+  .elsewhere a:hover{border-color:var(--accent); color:var(--accent); text-decoration:none}
+  .snapshot-note{font-size:.86rem; color:var(--ink-faint); margin:16px 0 0; max-width:70ch}
 
   footer{background:var(--paper); padding:36px 0 48px; color:var(--ink-soft); font-size:.86rem}
   footer .grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:28px}
@@ -155,6 +180,9 @@
     .editions,.layers,footer .grid{grid-template-columns:1fr}
     .hero h1{font-size:2.2rem}
   }
+  @media (max-width:620px){
+    .elsewhere{grid-template-columns:repeat(2,1fr)}
+  }
 </style>
 </head>
 <body>
@@ -168,10 +196,11 @@
       <span class="kicker">A data essay · economic history · eighth edition</span>
       <h1>The Shifting Weight<br><span class="of">of</span> Nations</h1>
       <p class="subtitle">GDP shares, population, and power in world history — five centuries of economic transformation.</p>
+      <p class="payoff">Size is headcount; weight is productivity.</p>
       <div class="cta">
         <a class="btn btn-primary" href="edition.html">Read online →</a>
         <a class="btn btn-ghost" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-with-cover.pdf">Download PDF</a>
-        <a class="btn btn-ghost" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-audio.pdf">Audio edition</a>
+        <a class="btn btn-ghost" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-audio.pdf">Read-aloud (TTS)</a>
       </div>
       <p class="byline">Directed by Hulki Okan Tabak · written by Claude 4.8 and Hulki Okan Tabak</p>
     </div>
@@ -190,51 +219,86 @@
   </section>
 
   <section class="wrap">
-    <span class="kicker">Three editions, one source</span>
+    <span class="kicker">Three ways in, one source</span>
     <h2>Read it the way that suits you.</h2>
-    <p class="lead">Every edition is rendered from a single source of truth — one data file, one manuscript — so the formats can never drift.</p>
+    <p class="lead">Every edition is rendered from a single source of truth — one data file, one manuscript — so the formats can never drift. Same essay, three formats.</p>
     <div class="editions">
       <article class="ed">
-        <span class="tag">Interactive</span>
-        <h3>The live page</h3>
-        <p>Sixteen interactive figures with a West-bloc toggle — explore the rulers, the multiplier, and the long view in your browser.</p>
-        <a class="go" href="edition.html">Open the interactive edition →</a>
+        <span class="tag">Read online · free</span>
+        <h3>The full essay, online</h3>
+        <p class="rt">about an hour · no download</p>
+        <p>The complete essay in your browser, with <b>16 live figures you can explore</b> — toggle the West bloc, read every chart, follow the long view. Free, nothing to install.</p>
+        <a class="go" href="edition.html">Read the essay online →</a>
       </article>
       <article class="ed">
         <span class="tag">Print · PDF</span>
         <h3>The typeset book</h3>
-        <p>The full essay, typeset for reading and citation, with the cover. 62 pages, embedded figures and reference tables.</p>
+        <p class="rt">62 pages · to keep &amp; cite</p>
+        <p>The same essay, typeset with the cover — to download, print, quote, and cite. Embedded figures and reference tables; the citable artifact.</p>
         <a class="go" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-with-cover.pdf">Download the PDF →</a>
       </article>
       <article class="ed">
-        <span class="tag">Audio · TTS</span>
-        <h3>The screen-reader edition</h3>
-        <p>Prose without the tables and figure scaffolding — built to be read aloud by Speechify, Peech, and other text-to-speech apps.</p>
-        <a class="go" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-audio.pdf">Download the audio edition →</a>
+        <span class="tag">Read-aloud · TTS</span>
+        <h3>For text-to-speech</h3>
+        <p class="rt">spoken aloud · bring a TTS app</p>
+        <p>Prose stripped of tables and figure scaffolding so a text-to-speech app (Speechify, Peech, or your screen reader) reads it cleanly aloud. It is a document for TTS, not a recorded audio track.</p>
+        <a class="go" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-audio.pdf">Download the TTS edition →</a>
       </article>
     </div>
+    <p class="start"><strong>Short on time?</strong> A 5-minute version is published on <a href="https://medium.com/@hotabak/the-shifting-weight-of-nations-06056c434d2c">Medium</a> and <a href="https://hulkiokantabak.substack.com/p/the-shifting-weight-of-nations">Substack</a> — the argument and the key figures, condensed.</p>
   </section>
 
   <section class="wrap">
     <span class="kicker">A living document</span>
     <h2>Dated to read, open to revise.</h2>
+    <div class="status">
+      <div><b>Edition</b> &nbsp;Eighth (first living edition) · June 2026</div>
+      <div><b>Data vintages</b> &nbsp;IMF WEO April 2026 · World Bank WDI 2024 · UN WPP 2024 (medium variant)</div>
+      <div><b>Last updated</b> &nbsp;June 2026 &nbsp;·&nbsp; <a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/CHANGELOG.md">what changed →</a></div>
+    </div>
     <p class="lead">The project is built as three layers, and naming them keeps the claim honest.</p>
     <div class="layers">
-      <div class="layer"><span class="n">1</span><b>Dated editions</b><span>Fixed snapshots — this PDF, the audio, the interactive page — for readers to quote and cite.</span></div>
+      <div class="layer"><span class="n">1</span><b>Dated editions</b><span>Fixed snapshots — this PDF, the TTS edition, the online page — for readers to quote and cite.</span></div>
       <div class="layer"><span class="n">2</span><b>A public repository</b><span>The data, the code, the claim registry, and the correction log — the source of truth, openly licensed.</span></div>
       <div class="layer"><span class="n">3</span><b>A skill</b><span>The reasoning, codified — the interface to the repository, not a second source of truth.</span></div>
     </div>
     <div class="fork">
-      <p style="margin-top:0">When a new <strong>IMF</strong>, <strong>World Bank</strong>, or <strong>UN</strong> release lands, the numbers change in one place, a 52-check suite re-runs, and all three editions rebuild. The argument — a method and a set of directions — does not expire when a denominator is revised.</p>
-      <p>Anyone may read, copy, or <strong>fork</strong> it. The ordinary way to propose a change — a corrected figure, a new vintage, a better chart — is to fork the repository and open a request to merge. Updating it is an <em>option</em>, not an obligation: if it is never touched again, the dated edition stands on its own.</p>
-      <p style="margin-bottom:0"><a href="https://github.com/hulkiokantabak/weight-of-nations">View the repository on GitHub →</a> &nbsp;·&nbsp; <code>git clone</code>, edit <code>build/data.py</code>, run the suite, open a PR.</p>
+      <p style="margin-top:0">When a new <strong>IMF</strong>, <strong>World Bank</strong>, or <strong>UN</strong> release lands, the numbers change in <strong>one place</strong> (<code>build/data.py</code>), a 52-check suite re-runs, and every edition rebuilds. The argument — a method and a set of directions — does not expire when a denominator is revised. <a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/CONTRIBUTING.md">How to update when new figures land →</a></p>
+      <p><strong>Earlier editions are never overwritten.</strong> Each release is preserved as a dated <a href="https://github.com/hulkiokantabak/weight-of-nations/tags">tagged version</a> (v8.0 → today) on GitHub; a new edition stands beside the old one, it does not replace it.</p>
+      <p style="margin-bottom:0"><strong>Anyone may read, copy, fork, or translate it</strong> under the licence below. The ordinary way to propose a change is to fork and open a request to merge — <code>git clone</code>, edit <code>build/data.py</code>, run the suite, open a PR.</p>
+      <p class="gov"><strong>One safeguard:</strong> the canonical edition, the <code>main</code> branch, and this site are maintained <strong>solely by the author</strong>. Anyone is free to fork and publish their own version, but updating <em>this</em> essay and <em>this</em> site is the author's prerogative alone — a fork can never take over the original.</p>
     </div>
   </section>
 
   <section class="wrap">
     <span class="kicker">Sources &amp; provenance</span>
     <h2>Where the numbers come from.</h2>
-    <p class="lead">Data is drawn from public sources, kept in separate lanes and never spliced: <strong>IMF</strong> World Economic Outlook, <strong>World Bank</strong> WDI, <strong>UN</strong> World Population Prospects, the <strong>Maddison</strong> Project (deep history), and <strong>Bairoch</strong> (manufacturing). An independent analysis built from a public <em>Uncommon Knowledge</em> conversation (guest Stephen Kotkin, host Peter Robinson) — not a transcript, an endorsement, or a Hoover publication.</p>
+    <p class="lead">Data is drawn from public sources, kept in separate lanes and never spliced:
+      <a href="https://www.imf.org/en/Publications/WEO">IMF</a> World Economic Outlook,
+      <a href="https://databank.worldbank.org/source/world-development-indicators">World Bank</a> WDI,
+      <a href="https://population.un.org/wpp/">UN</a> World Population Prospects, the
+      <a href="https://www.rug.nl/ggdc/historicaldevelopment/maddison/">Maddison</a> Project (deep history), and Bairoch (manufacturing).
+      An independent analysis built from a public <em>Uncommon Knowledge</em> conversation
+      (<a href="https://www.youtube.com/watch?v=gBEdxb8ei_0">guest Stephen Kotkin, host Peter Robinson</a>) —
+      not a transcript, an endorsement, or a Hoover publication.</p>
+    <p class="lead">Every public macro-claim is logged and ruler-labelled in the
+      <a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/data/claim-registry.md">claim registry</a>;
+      the verified numbers and their URLs live in <a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/docs/source-research.md">source research</a>.</p>
+    <p class="disclaimer" style="border:none;margin-top:8px;padding-top:0">PPP figures carry roughly ±5–10% structural uncertainty; deep-history figures are reconstructions with wide error bars. Read the ruler first, the direction second, and the decimal point last.</p>
+  </section>
+
+  <section class="wrap">
+    <span class="kicker">Read it elsewhere</span>
+    <h2>The essay across platforms.</h2>
+    <p class="lead">The essay is also published on these platforms. Each is a <strong>dated snapshot</strong>; the living, current version is this site and the repository.</p>
+    <div class="elsewhere">
+      <a href="https://play.google.com/store/books/details?id=S8_gEQAAQBAJ">Google Books<br>(full edition)</a>
+      <a href="https://hulkiokantabak.substack.com/p/the-shifting-weight-of-nations">Substack<br>(compact)</a>
+      <a href="https://medium.com/@hotabak/the-shifting-weight-of-nations-06056c434d2c">Medium<br>(compact)</a>
+      <a href="https://x.com/hotabak/status/2061789739074597278">X<br>(article)</a>
+      <a href="https://www.linkedin.com/pulse/shifting-weight-nations-hulki-okan-tabak-5ilrf/">LinkedIn<br>(article)</a>
+    </div>
+    <p class="snapshot-note">Google Books carries the full eighth edition; Substack, Medium, X, and LinkedIn carry the compact version. When the data refreshes, the snapshots may lag — the current figures are always here.</p>
   </section>
 </main>
 
@@ -255,6 +319,7 @@
         <h4>The project</h4>
         <p><a href="https://github.com/hulkiokantabak/weight-of-nations">Repository</a></p>
         <p><a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/CONTRIBUTING.md">Contribute / fork</a></p>
+        <p><a href="https://github.com/hulkiokantabak/weight-of-nations/tags">Version history</a></p>
       </div>
     </div>
     <p class="disclaimer">This is analysis and a public essay, <strong>not financial advice</strong>; the scenario coda is explicitly illustrative, not a forecast. GDP share is not identical to power — technology, institutions, energy, demographics, and political capacity decide how output becomes power. This page is a snapshot of the eighth edition; the living version is the repository.</p>

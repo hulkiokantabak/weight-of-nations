@@ -50,6 +50,40 @@ thing that breaks the project.
 6. `docs/LOG.md` updated if a catch was found; `CHANGELOG.md` updated for any material change.
 7. Commit message describes the change; one logical change per PR.
 
+## Updating the data when a new release lands
+
+When the IMF (April / October WEO), the World Bank (WDI), or the UN (WPP) publishes new figures:
+
+1. **Fork** the repository (or branch, if you are the maintainer).
+2. **Re-pull the whole series from the new vintage** into `build/data.py` — never patch only the
+   latest year, and never splice two vintages of the same ruler. Record the new numbers, with
+   source and URL, in `docs/source-research.md`.
+3. `cd build && python check_consistency.py` → **52 passed, 0 FAILED**.
+4. Rebuild the editions: `python build_pdf.py && python build_html.py && python build_audio.py`
+   (run `parse_manuscript.py` first **only** if you changed prose).
+5. Decide **decimals vs direction**: a refreshed denominator that leaves every *direction* intact
+   is a *minor* release (bump the version, update `CHANGELOG.md`); a changed *direction* is a new
+   analytical *edition* and goes through the review panel first.
+6. Bump the version, tag the release, and **open a pull request** — the living-update workflow
+   opens one automatically on a `build/data.py` change. The full ritual is in
+   `skills/weight-of-nations-data-refresh`.
+
+## Editions are versioned, never overwritten
+
+Every edition is a **tagged release** (`v8.0`, `v8.1`, …). A refresh adds a new tag; it does not
+erase the old one. The dated PDF and the data file at each tag stay readable on GitHub indefinitely,
+and the site links its [version history](https://github.com/hulkiokantabak/weight-of-nations/tags).
+An old edition remains a complete, citable artifact even after a newer one ships.
+
+## Canonical control (what a fork can and cannot do)
+
+The licence (CC-BY-4.0) lets anyone fork, copy, translate, or re-publish — that is encouraged. But
+the **canonical** edition, the `main` branch, and the official site
+(`hulkiokantabak.github.io/weight-of-nations`) are altered **only by the author**. A fork is a
+separate repository: it may go its own way, but it cannot change this one or take over this site.
+Updating the canonical is the author's prerogative alone; `main` is branch-protected against
+force-pushes and deletion.
+
 ## What not to submit
 
 - Unsupported forecasts presented as data.
