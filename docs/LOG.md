@@ -14,6 +14,42 @@ where known.*
 
 ---
 
+## Email scrub · SE-fit · site improvements · governance (2026-06-02)
+
+**Privacy — personal email scrubbed from history (🔒).** A parallel session's GoatCounter commit
+(`15e9018`) was authored with the personal gmail. `git filter-branch --env-filter` (range
+`667e6dd..HEAD`) rewrote it to the `noreply` address, then `git push --force-with-lease`.
+`origin/main` verified clean (every author/committer email is now noreply; file tree byte-identical).
+GitHub may cache the old SHA until its own GC. **Standing rule:** every session's git must use
+`hotabak@users.noreply.github.com` (global config) — and `main` is now branch-protected (below).
+
+**iPhone SE 3rd gen — 375 px table fit (W-07, sev 2).** The page fit (no page overflow) but the wide
+data tables required sideways swiping. A two-tier mobile compaction (`@media ≤600 px` font .84rem /
+pad 8·11; `≤400 px` font .76rem / pad 6·8) + `-webkit-overflow-scrolling:touch` now fits most tables;
+**1–2 genuinely wide 4-column reference tables still scroll** (inherent at 375 px — a zero-scroll fix
+needs a stacked-card / `table-layout:fixed` restructure, offered to the author, not imposed).
+`build_html.py`, presentation-only.
+
+**Website improvements + governance (author-directed; landing + `CONTRIBUTING` only).** Implemented
+the chosen menu (A/B/C/D/F) plus the author's seven site asks:
+editions reframed and differentiated (Read online · Download PDF · Read-aloud TTS — the online edition
+no longer mis-sold as a separate "interactive" thing; "Audio" → "Read-aloud (text-to-speech)");
+hero payoff line; a status block (edition + data vintages + last-updated + what-changed); Sources now
+**links** IMF/World Bank/UN/Maddison + the Kotkin interview + the claim registry + source-research, with
+a PPP-uncertainty note; a **"Read it elsewhere"** section (Google Books/Substack/Medium/X/LinkedIn,
+labelled dated snapshots vs the living canonical) + JSON-LD `sameAs`; a "5-minute version" path +
+reading times; a **version-history (tags)** link (editions are never overwritten); an explicit
+**canonical-control** line. `CONTRIBUTING` gained a data-update quickstart, an editions-versioning
+section, and a canonical-control section.
+
+**Canonical safeguard (🔒).** `main` branch protection enabled via API (force-push + deletion blocked;
+no PR gate, so the author's own pushes still work). With GitHub's model (only the owner can push; forks
+are separate repos) the canonical edition and site can be altered **only by the author**; a fork can
+copy/extend freely under CC-BY but can never take over the original. *(A focused, "explore-only"
+interactive edition was scoped but deferred on cost, at the author's direction.)*
+
+---
+
 ## Cross-device display audit — small-iPhone reading fix (2026-06-02)
 
 Triggered by "reads poorly on an older small iPhone." The website-experts panel designed the audit
