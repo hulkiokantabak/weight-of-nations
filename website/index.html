@@ -7,26 +7,70 @@
 <meta name="description" content="A skeptical, interactive data essay on five centuries of world-GDP shares — the two rulers, the multiplier, and productivity as the one durable variable. A living document: read it, fork it, update the data.">
 <link rel="canonical" href="https://hulkiokantabak.github.io/weight-of-nations/">
 
+<meta name="author" content="Hulki Okan Tabak">
+<meta name="theme-color" content="#F4EEE2">
+
+<!-- Icons -->
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
 <!-- Open Graph / Twitter -->
 <meta property="og:type" content="book">
+<meta property="og:site_name" content="The Shifting Weight of Nations">
 <meta property="og:title" content="The Shifting Weight of Nations">
-<meta property="og:description" content="GDP shares, population, and power in world history — five centuries of economic transformation. A living, openly-licensed data essay.">
-<meta property="og:image" content="https://hulkiokantabak.github.io/weight-of-nations/assets/cover.png">
+<meta property="og:description" content="A skeptical, interactive data essay on five centuries of world-GDP shares — the two rulers, the multiplier, and productivity as the one durable variable. A living, openly-licensed document.">
+<meta property="og:image" content="https://hulkiokantabak.github.io/weight-of-nations/assets/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="The Shifting Weight of Nations — a data essay on five centuries of world GDP; book cover and title.">
 <meta property="og:url" content="https://hulkiokantabak.github.io/weight-of-nations/">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Shifting Weight of Nations">
+<meta name="twitter:description" content="Five centuries of world-GDP shares — the two rulers, the multiplier, and productivity as the one variable underneath. A living data essay.">
+<meta name="twitter:image" content="https://hulkiokantabak.github.io/weight-of-nations/assets/og-card.jpg">
+<meta name="twitter:image:alt" content="The Shifting Weight of Nations — book cover and title card.">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<!-- Bibliographic metadata (no GDP figures — ruler discipline applies to structured data too) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Book",
+  "name": "The Shifting Weight of Nations",
+  "alternativeHeadline": "Five centuries of world GDP, the two rulers, and the one variable underneath",
+  "author": [
+    { "@type": "Person", "name": "Hulki Okan Tabak" },
+    { "@type": "Organization", "name": "Claude (Anthropic)" }
+  ],
+  "about": ["Economic history", "GDP share", "Purchasing power parity", "Productivity"],
+  "inLanguage": "en",
+  "bookEdition": "Eighth edition",
+  "datePublished": "2026",
+  "image": "https://hulkiokantabak.github.io/weight-of-nations/assets/og-card.jpg",
+  "url": "https://hulkiokantabak.github.io/weight-of-nations/",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "isAccessibleForFree": true,
+  "publisher": { "@type": "Person", "name": "Hulki Okan Tabak" }
+}
+</script>
 
 <style>
+  /* Self-hosted fonts — the exact weights this page uses, shipped with the repo (no font CDN). */
+  @font-face{font-family:'Fraunces';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/fraunces-400.woff2') format('woff2')}
+  @font-face{font-family:'Fraunces';font-style:italic;font-weight:400;font-display:swap;src:url('assets/fonts/fraunces-400-italic.woff2') format('woff2')}
+  @font-face{font-family:'Fraunces';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/fraunces-600.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/plex-sans-400.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:500;font-display:swap;src:url('assets/fonts/plex-sans-500.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Sans';font-style:normal;font-weight:600;font-display:swap;src:url('assets/fonts/plex-sans-600.woff2') format('woff2')}
+  @font-face{font-family:'IBM Plex Mono';font-style:normal;font-weight:400;font-display:swap;src:url('assets/fonts/plex-mono-400.woff2') format('woff2')}
   :root{
     --paper:#F4EEE2; --paper-2:#FBF7EF; --card:#FCFAF4; --ink:#221C17; --ink-soft:#52493F;
-    --ink-faint:#857B6C; --rule:#D7CCB9; --rule-soft:#E7DECF; --accent:#993C1D; --gold:#C0851F;
+    --ink-faint:#6E6456; --rule:#D7CCB9; --rule-soft:#E7DECF; --accent:#993C1D; --gold:#C0851F;
     --navy:#2F5573; --maxw:940px;
   }
   *{box-sizing:border-box}
-  html{font-size:17px; scroll-behavior:smooth}
+  html{font-size:17px}
+  @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
   body{margin:0; background:var(--paper-2); color:var(--ink);
     font-family:'IBM Plex Sans',system-ui,sans-serif; line-height:1.6;
     -webkit-font-smoothing:antialiased;}
@@ -35,6 +79,7 @@
   .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
   a{color:var(--accent); text-decoration:none}
   a:hover{text-decoration:underline}
+  a:focus-visible,.btn:focus-visible,.skip:focus{outline:2px solid var(--accent); outline-offset:3px; border-radius:2px}
   h1,h2,h3{font-family:'Fraunces',Georgia,serif; font-weight:600; line-height:1.1; color:var(--ink)}
   .kicker{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.18em;
     text-transform:uppercase; color:var(--accent)}
@@ -116,7 +161,7 @@
 
 <header class="hero">
   <div class="wrap hero-grid">
-    <img class="cover" src="assets/cover.png" width="1024" height="1536"
+    <img class="cover" src="assets/cover-hero.jpg" width="760" height="1140" fetchpriority="high" decoding="async"
          alt="Book cover: a tall sailing ship at a stone quay on the left, a modern container ship and the Manhattan skyline on the right, beneath a faded world map; title in deep navy serif.">
     <div>
       <span class="kicker">A data essay · economic history · eighth edition</span>
@@ -136,7 +181,7 @@
   <section class="wrap">
     <span class="kicker">What this is</span>
     <h2>One number, worn two ways.</h2>
-    <p class="lead">It takes a memorable claim about the economic weight of nations and subjects it to scrutiny rather than repeating or debunking it. The whole method is one identity:</p>
+    <p class="lead">It takes a memorable claim about the economic weight of nations and subjects it to scrutiny rather than repeating or debunking it. Behind each share-point is a life the headline forgets — a clinic with a queue, a haircut in Delhi worth less at the exchange rate than the same hour in Zurich, a wage that buys more at home than the dollar admits. The whole method is one identity:</p>
     <div class="spine">
       <p>A nation's share of world GDP is <b>population × price-level × productivity</b>. People switch silently between two rulers — market-rate <b>nominal</b> and price-adjusted <b>PPP</b> — and between <em>size</em> and <em>prosperity</em>. Separate the rulers, divide out population, and five centuries of rise and fall collapse onto one durable variable: <b>productivity</b>.</p>
     </div>

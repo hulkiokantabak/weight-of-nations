@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://hulkiokantabak.github.io/weight-of-nations/sitemap.xml

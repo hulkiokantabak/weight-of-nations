@@ -40,4 +40,9 @@ service-account*.json
 local-notes/
 private/
 
+# The interactive edition served at /edition.html is generated from outputs/ at deploy time
+# (pages.yml) and locally by build_html.py — so the website copy is not tracked (it was an
+# 813 KB byte-identical duplicate that could only drift). Keep a local copy for offline preview.
+website/edition.html
+
 # Do NOT ignore outputs/ — the rendered editions are part of the living document.
