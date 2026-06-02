@@ -111,6 +111,17 @@ td .measure{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size
 td .measure.nom{background:rgba(162,59,38,.1);color:var(--us)}
 td .measure.mix{background:rgba(138,79,125,.12);color:var(--jp)}
 .tbl-foot{font-size:.8rem;color:var(--ink-faint);margin:0 2px 1.05em;max-width:none}
+/* Mobile: compact cells so most tables fit a phone; momentum-scroll the genuinely wide ones. */
+@media(max-width:600px){
+  table{font-size:.84rem}
+  th,td{padding:8px 11px}
+  caption{font-size:1.06rem;padding:14px 14px 8px}
+  .tbl-wrap{-webkit-overflow-scrolling:touch}
+}
+@media(max-width:400px){
+  table{font-size:.76rem}
+  th,td{padding:6px 8px}
+}
 
 .pull{font-family:"Fraunces",serif;font-style:italic;font-weight:500;font-size:clamp(1.35rem,3.2vw,1.85rem);line-height:1.32;color:var(--ink);
   border-top:2px solid var(--accent);border-bottom:1px solid var(--rule);padding:30px 0;margin:46px 0;max-width:24ch}
