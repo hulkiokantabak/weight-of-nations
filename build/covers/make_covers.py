@@ -5,7 +5,8 @@ oxblood / paper / steel), drawing on a different idea from the essay. Rendered v
 import os, cairosvg
 
 W, H = 1600, 2400
-OUT = "/mnt/user-data/outputs"
+HERE = os.path.dirname(os.path.abspath(__file__))
+OUT = os.environ.get("WON_COVERS_DIR", HERE)
 os.makedirs(OUT, exist_ok=True)
 
 # ---- palette (from the project) ----
@@ -236,7 +237,7 @@ COVERS=[("cover-1-two-rulers",cover_two_rulers),
 
 for name,fn in COVERS:
     svg=fn()
-    open(f"/home/claude/covers/{name}.svg","w").write(svg)
+    open(os.path.join(OUT, f"{name}.svg"), "w", encoding="utf-8").write(svg)
     cairosvg.svg2png(bytestring=svg.encode("utf-8"), write_to=f"{OUT}/{name}.png",
                      output_width=W, output_height=H)
     print("rendered", name)

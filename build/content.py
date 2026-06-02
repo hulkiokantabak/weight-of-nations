@@ -2,7 +2,7 @@
 # AUTO-GENERATED from the Seventh-Edition manuscript by parse_manuscript.py.
 # Edit the manuscript + re-run the parser; do not hand-edit.
 SECTIONS = [{'k': 'masthead',
-  'kicker': 'A data essay · economic history · seventh edition',
+  'kicker': 'A data essay · economic history · eighth edition',
   'h1': 'The Shifting Weight of Nations',
   'standfirst': '<i>Five centuries of world GDP, the two rulers that make the same country look mighty or modest, '
                 'and the one variable underneath them both.</i>',

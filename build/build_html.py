@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""build_html.py — emit the interactive (Chart.js) edition into /mnt/user-data/outputs."""
+"""build_html.py — emit the interactive (Chart.js) edition into outputs/ (override with WON_OUTPUT_DIR)."""
 import json, os
 import data as D
 import common

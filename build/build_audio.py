@@ -7,7 +7,7 @@ numbers never get spoken — they live inside charts and grids the voice skips, 
 prose stays qualitative. This edition fixes that. Every crucial figure and table is
 rendered as a spoken-number NARRATION paragraph (no images, no grids — tables become
 sentences). A `narration` field on a block overrides its visual text; otherwise the
-number-rich caption is cleaned and spoken. Output: the-weight-of-nations-audio.pdf.
+number-rich caption is cleaned and spoken. Output: the-shifting-weight-of-nations-audio.pdf.
 """
 import os, re, html
 import data as D

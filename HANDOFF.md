@@ -86,10 +86,15 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 0. **Publishing copy received & committed (2026-06-02).** ✅ The author's cover
    (`build/covers/the-shifting-weight-of-nations-cover.png`) and the **with-cover publishing PDF**
    (`outputs/...-with-cover.pdf`, 63 pp = cover + the 62-pp essay) are committed; the without-cover
-   and audio editions were byte-identical to the v8.5 build outputs. **Still open:** (a) the masthead
-   reads "Seventh (fused & panel-reviewed)" → correct to eighth edition in the publishing pipeline
-   (faithful fonts) before wide release; (b) add a reproducible cover-merge step (cover.png + essay
-   PDF → with-cover PDF) so the publishing edition is a build output, not a hand-assembled input.
+   and audio editions were byte-identical to the v8.5 build outputs. **Still open:** (a) the masthead label is now **fixed at the source** — the
+   manuscript "Edition" field *and* the hardcoded `parse_manuscript.py` kicker both read "eighth
+   edition" (commit `52cbd00` + the bug-pass commit); the rendered editions and the live site still
+   show "Seventh" until a **faithful re-render** in the publishing pipeline (the PDF must not be
+   rebuilt on this Windows box — font fallback), after which replace `outputs/` and re-upload (the
+   site then auto-redeploys). (b) add a reproducible cover-merge step (cover.png + essay PDF →
+   with-cover PDF) so the publishing edition is a build output, not a hand-assembled input. (c) the
+   manuscript Appendix E "Build size" self-metrics are stale (~15,400 words / 59 pages / ~3,600 lines
+   → current ~17,100 / 62 / ~3,860) — a prose correction needing author sign-off + a re-render.
 1. **Website built & LIVE (2026-06-02).** ✅ Public site at
    **https://hulkiokantabak.github.io/weight-of-nations/** — landing `index.html` (read online /
    download / fork / cite, in the essay's type + palette) plus the interactive edition, in

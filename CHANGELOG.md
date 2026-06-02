@@ -6,6 +6,18 @@ a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis 
 Every release is tagged; history is never silently overwritten. Each entry names the change and,
 for data, its source and ruler labels.
 
+## Fixes — masthead label + script/doc portability (2026-06-02, post-v8.5)
+- MASTHEAD: corrected the edition label "Seventh" → "Eighth (first living edition)" at **both**
+  source points — the manuscript "Edition" field and the hardcoded kicker in `parse_manuscript.py`
+  (the visible "SEVENTH EDITION" line was the latter); regenerated `content.py`. The rendered
+  editions pick this up on the next faithful re-render in the publishing pipeline.
+- PORTABILITY: `build/covers/make_covers.py` no longer hardcodes Linux paths (`/mnt/user-data`,
+  `/home/claude`) — it writes to `build/covers/` (override `WON_COVERS_DIR`) with UTF-8 encoding, so
+  it runs on any OS.
+- DOCS: `docs/README-rebuild.md` fixed (wrong `the-weight-of-nations` slug, `/mnt` output paths,
+  container-only pip flag, parser-report counts); stale build-script docstrings and two stale
+  `docs/METRICS.md` figures (16,713 words / 63-pp) corrected. No data/analysis change; suite 52/0.
+
 ## Publication layer — cover + website (2026-06-02, post-v8.5; no essay change)
 - COVER: added the book cover (`build/covers/the-shifting-weight-of-nations-cover.png`) and the
   **with-cover publishing PDF** (`outputs/the-shifting-weight-of-nations-with-cover.pdf`, 63 pp =

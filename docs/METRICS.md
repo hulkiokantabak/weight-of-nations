@@ -92,7 +92,7 @@ effort. Provenance is labelled strictly:
   fractions of ChatGPT; the prior Claude chats as ≈4× this one).
 
 > **Commensurability caveat.** The Claude line's canonical deliverable is *this living essay and
-> its repository* (a 16,713-word essay → three editions, plus ~490 lines of skills and ~860
+> its repository* (a 17,134-word essay → three editions, plus ~530 lines of skills and ~860
 > lines of docs). ChatGPT's self-report counts *report-PDF iterations and their words*. These
 > are different units of work; the cross-model word figures index volume/effort, **not** a
 > single corpus of unique words, and report iterations overlap heavily.
@@ -101,7 +101,7 @@ effort. Provenance is labelled strictly:
 
 | Chat | Role | Prompts | Prompt words | Output |
 |---|---|---|---|---|
-| #5 (this one) | finalisation + migration to the living document | **2** driving [measured] | **~612** (172 + ~440) [measured] | the repository (3 skills, all docs, the workflow, the refresh harness), +1,339 manuscript words, three rebuilt editions; canonical essay **16,713 words / 63-pp PDF** |
+| #5 (this one) | finalisation + migration to the living document | **2** driving [measured] | **~612** (172 + ~440) [measured] | the repository (3 skills, all docs, the workflow, the refresh harness), +1,339 manuscript words, three rebuilt editions; canonical essay **17,134 words / 62-pp PDF** |
 | #1–#4 | editions 1–7 authoring, the 22-figure pipeline build, the 7th-edition fusion | not transcript-counted | not transcript-counted | **≈4× this chat's output in aggregate** [author estimate] |
 | **Claude total** | — | — | — | **≈5× this chat** [author estimate] |
 

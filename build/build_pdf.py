@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """build_pdf.py — render the print/PDF edition with weasyprint, from the same
-content + data + the matplotlib charts. Output to /mnt/user-data/outputs."""
+content + data + the matplotlib charts. Output to outputs/ (override with WON_OUTPUT_DIR)."""
 import os, glob
 from pathlib import Path
 import data as D

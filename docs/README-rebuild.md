@@ -6,7 +6,7 @@ manuscript if you edit it.
 
 ## 1 · Dependencies
 ```bash
-pip install weasyprint fonttools brotli pypdf cairosvg pyspellchecker matplotlib numpy --break-system-packages
+pip install weasyprint fonttools brotli pypdf cairosvg pyspellchecker matplotlib numpy
 ```
 (Renderers used by the pipeline that are normally already present: `pdftoppm` (poppler) and
 `montage` (ImageMagick) for QA rasterization — not required for the build itself.)
@@ -53,8 +53,8 @@ python3 build_pdf.py      # renders all 22 chart PNGs (charts.render_all) → as
 python3 build_html.py      # 16 Chart.js canvases + 6 inlined coda PNGs → self-contained HTML
 python3 build_audio.py     # TTS-optimized PDF
 ```
-Outputs land in `/mnt/user-data/outputs/`:
-`the-weight-of-nations.pdf`, `the-weight-of-nations.html`, `the-weight-of-nations-audio.pdf`.
+Outputs land in `outputs/` by default (override with `WON_OUTPUT_DIR`):
+`the-shifting-weight-of-nations.pdf`, `the-shifting-weight-of-nations.html`, `the-shifting-weight-of-nations-audio.pdf`.
 
 ## 4 · Regenerate content from the manuscript (only if you edit prose)
 `content.py` is auto-generated. To change prose, edit
@@ -63,22 +63,22 @@ Outputs land in `/mnt/user-data/outputs/`:
 # in parse_manuscript.py, set SRC to the manuscript path you're using, then:
 cd build && python3 parse_manuscript.py    # rewrites content.py
 ```
-The parser prints a block/figure/table report; expect **22 figures** and **3 reference tables**.
+The parser prints a block/figure/table report; expect **22 figures**, **20 tables**, **28 sections**.
 
 ## 5 · Covers (optional)
 ```bash
-cd build/covers && python3 make_covers.py   # 5 SVG→PNG covers at 1600×2400 → /mnt/user-data/outputs/
+cd build/covers && python3 make_covers.py   # 5 programmatic SVG→PNG alt-covers (1600×2400) → build/covers/
 ```
 
 ## 6 · Quick verify after a build
 ```bash
-cd /mnt/user-data/outputs
-grep -oc 'class="chart-img"' the-weight-of-nations.html   # expect 6
-grep -oc '<canvas' the-weight-of-nations.html             # expect 16
-grep -c '222.8' the-weight-of-nations.html                # present (corrected PPP)
+cd ../outputs
+grep -oc 'class="chart-img"' the-shifting-weight-of-nations.html   # expect 6
+grep -oc '<canvas' the-shifting-weight-of-nations.html             # expect 16
+grep -c '222.8' the-shifting-weight-of-nations.html                # present (corrected PPP)
 python3 - <<'PY'
 from pypdf import PdfReader
-t="".join((p.extract_text() or "") for p in PdfReader("the-weight-of-nations.pdf").pages)
+t="".join((p.extract_text() or "") for p in PdfReader("the-shifting-weight-of-nations.pdf").pages)
 print("leaks:", "<cite" in t, "{SW(" in t)            # both False
 for s in ["222.8","$170","The cone of outcomes","Demographic destiny","Long Plateau"]:
     print("OK" if s in t else "MISS", s)

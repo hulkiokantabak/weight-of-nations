@@ -73,7 +73,7 @@ for l in mast_lines[1:]:
         else:
             dateline.append((label, inline(val)))
 masthead = {"k": "masthead",
-            "kicker": "A data essay \u00b7 economic history \u00b7 seventh edition",
+            "kicker": "A data essay \u00b7 economic history \u00b7 eighth edition",
             "h1": h1, "standfirst": standfirst, "byline": byline, "dateline": dateline}
 
 # ---- tokenize body ----
