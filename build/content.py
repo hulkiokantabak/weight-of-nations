@@ -12,7 +12,8 @@ SECTIONS = [{'k': 'masthead',
                 'youtube.com/watch?v=gBEdxb8ei_0'),
                ('Span', '1500–2026, with a 2050 demographic horizon'),
                ('Lenses', 'deep history · manufacturing · technology · geopolitics · the future'),
-               ('Edition', 'Eighth (first living edition) · June 2026')]},
+               ('Edition', 'Eighth (first living edition) · June 2026'),
+               ('Web', 'hulkiokantabak.github.io/weight-of-nations')]},
  {'k': 'argument',
   'hyp': "A nation's share of world GDP is not one number but three multiplied together — its share of the world's "
          'people, its price level (the ruler you measure with), and its productivity (output per person relative to '
@@ -1518,8 +1519,8 @@ SECTIONS = [{'k': 'masthead',
             'three editions rebuild from the corrected source. A change of <i>direction</i>, not just decimals, '
             'triggers a new analytical edition through the review body. See Appendix F.'],
            ['Build size',
-            'About 3,600 lines of Python across the pipeline; manuscript ~15,400 words; 22 figures plus three '
-            "reference tables; this edition's print PDF runs 59 pages."],
+            'About 4,000 lines of Python across the pipeline; manuscript ~17,200 words; 22 figures plus three '
+            "reference tables; this edition's print PDF runs 62 pages."],
            ['Cross-model effort',
             'Produced across nine conversations and five models — five Claude sessions and four other-LLM lines '
             '(GPT-5.5 Pro, Gemini, Grok, DeepSeek), from 31 May 2026. The Claude spine and prose are canonical; the '
@@ -1549,7 +1550,9 @@ SECTIONS = [{'k': 'masthead',
        'repository itself is designed to update, and the ordinary way to propose a change — a corrected figure, a '
        'newly released number, an improvement to the build — is to fork it and open a request to merge. Updating it '
        'is an <i>option</i>, not an obligation: an open invitation to anyone who finds the essay useful, and a '
-       'capability the project keeps available rather than a maintenance promise it makes.'},
+       'capability the project keeps available rather than a maintenance promise it makes. You can read the living '
+       'version online at <b>hulkiokantabak.github.io/weight-of-nations</b>, and the repository — the source of '
+       'truth behind every edition — is at <b>github.com/hulkiokantabak/weight-of-nations</b>.'},
  {'k': 'p',
   't': 'The update is deliberately narrow, and that narrowness is the whole trick. The argument of this essay is not '
        'a forecast. It is a method — separate the rulers, divide out population, watch productivity — and a set of '
