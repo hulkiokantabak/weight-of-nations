@@ -113,6 +113,14 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
    a deploy conflict** — `living-update.yml` no longer deploys (it only rebuilds + opens a PR), so a data
    push can no longer replace the landing page with the bare edition; `pages.yml` is the sole deployer.
    The duplicate `website/edition.html` is now generated at deploy, not tracked (see `docs/LOG.md`).
+   *Cross-device pass 2026-06-02:* fixed the interactive edition's horizontal overflow on ≤320 px phones
+   (a Chart.js canvas guard: post-build resize + `max-width:100%` + page `overflow-x:hidden`), plus
+   AA-contrast and a reduced-motion guard in the edition and larger landing tap targets; verified across
+   320→1440 px + landscape + dark. `website/edition.html` is now genuinely un-tracked (regenerated at
+   deploy). GoatCounter analytics (added by a parallel session, commit `15e9018`) coexists with the
+   responsive fixes. **Privacy flag for the author:** commit `15e9018` is authored with the personal
+   gmail (not the `noreply` address), so it is now in public commit history — see `docs/LOG.md` for
+   scrub-vs-leave options; not actioned automatically (a history rewrite + force-push is destructive).
 2. **Make the repo fork-ready** for outside contributors. Turn `CONTRIBUTING.md` into a concrete
    fork → edit `build/data.py` → run the 52-check suite → rebuild → open-a-PR walkthrough; add a
    `.gitattributes` (LF for code/text) so line endings stay stable across Windows/macOS/Linux clones

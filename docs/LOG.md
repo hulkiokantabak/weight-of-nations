@@ -14,6 +14,37 @@ where known.*
 
 ---
 
+## Cross-device display audit — small-iPhone reading fix (2026-06-02)
+
+Triggered by "reads poorly on an older small iPhone." The website-experts panel designed the audit
+(5-round prep), the checks ran across a device matrix (320–1440 + landscape + 200% + reduced-motion +
+dark), fixes shipped, and a 3-round post-mortem followed. **Presentation-only; data, charts, prose,
+PDF, and audio editions untouched; suite 52/0.**
+
+| # | Catch | Sev | Where | Resolution | Standing rule |
+|---|---|---|---|---|---|
+| W-03 | **Interactive edition overflowed horizontally at ≤347 px** (320 px iPhone): live Chart.js canvases fell back to their 300 px HTML default instead of the 222 px box, pushing the page to 349 px. | 3 | edition (build_html.py) | Post-build `rAF → Chart.getChart().resize()` nudge + `.chart-box canvas{max-width:100%}` + `body{overflow-x:hidden}`. Charts now fit the box at every width. | 🔒 responsive canvases can fall back to 300 px — guard with resize() + max-width + page overflow-x:hidden. |
+| W-04 | **Edition faint text `#8C8273` = 3.3:1** — fails WCAG AA. | 2 | edition | Darkened to `#6E6456` (~5:1), matching the landing. | 🔒 faint UI text ≥4.5:1 on paper. |
+| W-05 | **Figure rise-animation had no reduced-motion guard.** | 2 | edition | `@media (prefers-reduced-motion:reduce){.figure{opacity:1;transform:none;animation:none}}`. | 🔒 every animation carries a reduced-motion guard. |
+
+**Method learning (🔒).** A CSS/JS-only edit to a *generated* edition is safe to ship only after a
+temp-dir rebuild is **byte-identical** to the committed artifact (the feasibility gate). Confirmed here
+before editing `build_html.py`; the post-edit diff was confined to the 4 CSS lines + 1 JS line, data
+byte-unchanged.
+
+**Repo-hygiene learning (🔒).** To un-track a file while keeping it on disk: `git rm --cached` then a
+**bare** `git commit` — never `git reset` after (re-tracks it), never `git commit <pathspec>` (re-adds
+the working-tree copy). `website/edition.html` is now genuinely un-tracked (two earlier attempts had
+silently failed). **Multi-seat:** when another session pushes to `main` mid-flight (the GoatCounter
+commit), **rebase, never force-push.**
+
+**Flagged for the author (privacy, out of panel scope).** Commit `15e9018` (GoatCounter, another
+session) is authored `hotabak@gmail.com` — the personal email is now in public commit history. Earlier
+audit was correct at the time; this landed afterward. Fix options: scrub via history-rewrite +
+force-push, or set that session's git to the `noreply` address and leave history. Not actioned here.
+
+---
+
 ## Website improvement session — panels + landing-layer pass (2026-06-02)
 
 A standalone website round, **no edition / manuscript / data / PDF change**. The **website-experts**
