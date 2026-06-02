@@ -1,0 +1,45 @@
+name: Deploy website to GitHub Pages
+
+# Publishes the static site in website/ to GitHub Pages. The interactive edition is
+# copied fresh from outputs/ at deploy time, so the live site tracks the latest build
+# without committing a second copy that could drift. Enable once in the repository:
+# Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'outputs/the-shifting-weight-of-nations.html'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; don't cancel a run mid-publish.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Assemble site (landing + current interactive edition)
+        run: |
+          mkdir -p _site
+          cp -r website/. _site/
+          cp outputs/the-shifting-weight-of-nations.html _site/edition.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

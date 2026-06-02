@@ -6,6 +6,18 @@ a data essay: **patch** = typo/layout/metadata; **minor** = new data, no thesis 
 Every release is tagged; history is never silently overwritten. Each entry names the change and,
 for data, its source and ruler labels.
 
+## Publication layer — cover + website (2026-06-02, post-v8.5; no essay change)
+- COVER: added the book cover (`build/covers/the-shifting-weight-of-nations-cover.png`) and the
+  **with-cover publishing PDF** (`outputs/the-shifting-weight-of-nations-with-cover.pdf`, 63 pp =
+  cover + the 62-pp essay). The without-cover and audio editions are byte-identical (SHA-256) to the
+  v8.5 WeasyPrint outputs.
+- WEBSITE: added a public site (`website/` + `.github/workflows/pages.yml`) for GitHub Pages — a
+  landing page (read online / download / fork / cite, in the essay's type and palette) plus the
+  interactive edition, deployed via GitHub Actions. Enable once: Settings → Pages → Source → GitHub
+  Actions.
+- No change to the essay, data, figures, or editions; suite 52/0. (Still flagged: the masthead reads
+  "Seventh edition" — to be corrected in the publishing pipeline.)
+
 ## v8.5 — 2026-06-02 (patch · layout + living-document prose + authorship)
 - LAYOUT (typeset PDF, 63→62 pp): generalised the keep-with-next grouper in `build/common.py` so a
   heading/caption-lead binds to a following *table*, not only a figure (fixes the scenario-map

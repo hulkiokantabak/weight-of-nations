@@ -81,16 +81,20 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
 
 ## 6 · Open items (keep current)
 
-**Next working session (planned with the author, 2026-06-02 — begins once the cover / publishing
-copy lands):**
+**Next working session (2026-06-02 — cover + website done; fork-readiness + 1-year-revisit remain):**
 
-0. **Publishing copy is incoming.** The author is finishing the **cover** on ChatGPT + the
-   chat-advisor; that cover version is the **canonical publishing copy**. First action: integrate it
-   (front cover + any front matter, and the masthead "Seventh (fused & panel-reviewed)" → eighth-edition
-   correction flagged in `CHANGELOG.md` v8.5), then tag the published release.
-1. **Build the website.** Stand up the public site — GitHub Pages, or a dedicated domain / subpage of
-   `hulkiokantabak.com` — serving the interactive HTML edition; add a Pages-deploy step to the
-   workflow so the site rebuilds with the repo. (Supersedes the bare "enable Pages" standing item.)
+0. **Publishing copy received & committed (2026-06-02).** ✅ The author's cover
+   (`build/covers/the-shifting-weight-of-nations-cover.png`) and the **with-cover publishing PDF**
+   (`outputs/...-with-cover.pdf`, 63 pp = cover + the 62-pp essay) are committed; the without-cover
+   and audio editions were byte-identical to the v8.5 build outputs. **Still open:** (a) the masthead
+   reads "Seventh (fused & panel-reviewed)" → correct to eighth edition in the publishing pipeline
+   (faithful fonts) before wide release; (b) add a reproducible cover-merge step (cover.png + essay
+   PDF → with-cover PDF) so the publishing edition is a build output, not a hand-assembled input.
+1. **Website built (2026-06-02).** ✅ Public site in `website/` — landing `index.html` (read online /
+   download / fork / cite, in the essay's type + palette) plus the interactive edition — deployed by
+   `.github/workflows/pages.yml`. **One-time setup remaining (author):** repo *Settings → Pages →
+   Build and deployment → Source → GitHub Actions*; the workflow then deploys on every push to `main`
+   and on manual run. Optional: attach a `hulkiokantabak.com` subpage as a custom domain.
 2. **Make the repo fork-ready** for outside contributors. Turn `CONTRIBUTING.md` into a concrete
    fork → edit `build/data.py` → run the 52-check suite → rebuild → open-a-PR walkthrough; add a
    `.gitattributes` (LF for code/text) so line endings stay stable across Windows/macOS/Linux clones

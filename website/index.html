@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Shifting Weight of Nations — a living data essay</title>
+<meta name="description" content="A skeptical, interactive data essay on five centuries of world-GDP shares — the two rulers, the multiplier, and productivity as the one durable variable. A living document: read it, fork it, update the data.">
+<link rel="canonical" href="https://hulkiokantabak.github.io/weight-of-nations/">
+
+<!-- Open Graph / Twitter -->
+<meta property="og:type" content="book">
+<meta property="og:title" content="The Shifting Weight of Nations">
+<meta property="og:description" content="GDP shares, population, and power in world history — five centuries of economic transformation. A living, openly-licensed data essay.">
+<meta property="og:image" content="https://hulkiokantabak.github.io/weight-of-nations/assets/cover.png">
+<meta property="og:url" content="https://hulkiokantabak.github.io/weight-of-nations/">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4EEE2; --paper-2:#FBF7EF; --card:#FCFAF4; --ink:#221C17; --ink-soft:#52493F;
+    --ink-faint:#857B6C; --rule:#D7CCB9; --rule-soft:#E7DECF; --accent:#993C1D; --gold:#C0851F;
+    --navy:#2F5573; --maxw:940px;
+  }
+  *{box-sizing:border-box}
+  html{font-size:17px; scroll-behavior:smooth}
+  body{margin:0; background:var(--paper-2); color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif; line-height:1.6;
+    -webkit-font-smoothing:antialiased;}
+  .skip{position:absolute; left:-9999px; top:0; background:var(--ink); color:#fff; padding:.6em 1em; z-index:10}
+  .skip:focus{left:8px; top:8px}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif; font-weight:600; line-height:1.1; color:var(--ink)}
+  .kicker{font-family:'IBM Plex Mono',monospace; font-size:.72rem; letter-spacing:.18em;
+    text-transform:uppercase; color:var(--accent)}
+
+  /* hero */
+  header.hero{background:
+      radial-gradient(1200px 400px at 80% -10%, rgba(47,85,115,.06), transparent),
+      var(--paper); border-bottom:1.5px solid var(--accent)}
+  .hero-grid{display:grid; grid-template-columns:300px 1fr; gap:42px; align-items:center;
+    padding:52px 0 46px}
+  .cover{width:100%; height:auto; border-radius:4px; display:block;
+    box-shadow:0 14px 40px rgba(34,28,23,.28), 0 2px 6px rgba(34,28,23,.18)}
+  .hero h1{font-size:clamp(2.3rem,5.5vw,3.4rem); letter-spacing:-.01em; margin:.35em 0 .25em}
+  .hero h1 .of{font-weight:400; font-style:italic; color:var(--accent)}
+  .subtitle{font-family:'Fraunces',serif; font-style:italic; font-size:1.18rem;
+    color:var(--ink-soft); margin:0 0 1em; max-width:34ch}
+  .byline{font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:var(--ink-faint);
+    border-top:1px solid var(--rule); padding-top:14px; margin-top:6px}
+  .cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:24px}
+  .btn{display:inline-block; font-family:'IBM Plex Sans',sans-serif; font-weight:500; font-size:.92rem;
+    padding:11px 18px; border-radius:4px; border:1.4px solid var(--accent); transition:.15s}
+  .btn-primary{background:var(--accent); color:#fff}
+  .btn-primary:hover{background:#7d2f16; text-decoration:none}
+  .btn-ghost{background:transparent; color:var(--accent)}
+  .btn-ghost:hover{background:rgba(153,60,29,.07); text-decoration:none}
+
+  /* sections */
+  main{padding:8px 0 0}
+  section{padding:40px 0; border-bottom:1px solid var(--rule-soft)}
+  section h2{font-size:1.6rem; margin:0 0 .2em}
+  .lead{font-size:1.05rem; color:var(--ink-soft); max-width:64ch}
+  .spine{background:var(--card); border:1px solid var(--rule); border-left:3px solid var(--accent);
+    border-radius:3px; padding:22px 26px; margin:22px 0; max-width:70ch}
+  .spine p{margin:0; font-size:1.05rem}
+  .rule-quote{font-family:'Fraunces',serif; font-style:italic; font-size:1.45rem; line-height:1.35;
+    color:var(--ink); border-top:1.5px solid var(--accent); border-bottom:1px solid var(--rule);
+    padding:20px 0; margin:30px 0; max-width:30ch}
+  .rule-quote b{color:var(--accent); font-style:normal; font-weight:600}
+
+  /* editions cards */
+  .editions{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:24px}
+  .ed{background:var(--card); border:1px solid var(--rule); border-top:2.6px solid var(--accent);
+    border-radius:3px; padding:20px 20px 22px; display:flex; flex-direction:column}
+  .ed .tag{font-family:'IBM Plex Mono',monospace; font-size:.68rem; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--accent)}
+  .ed h3{font-size:1.12rem; margin:.35em 0 .3em}
+  .ed p{font-size:.9rem; color:var(--ink-soft); margin:0 0 16px; flex:1}
+  .ed a.go{font-family:'IBM Plex Mono',monospace; font-size:.8rem; font-weight:500}
+
+  /* living */
+  .layers{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:22px 0}
+  .layer{padding:16px 18px; background:var(--paper); border:1px solid var(--rule); border-radius:3px}
+  .layer .n{font-family:'IBM Plex Mono',monospace; color:var(--gold); font-size:.8rem}
+  .layer b{display:block; font-family:'Fraunces',serif; font-size:1.02rem; margin:.2em 0}
+  .layer span{font-size:.86rem; color:var(--ink-soft)}
+  .fork{background:var(--card); border:1px solid var(--rule); border-radius:3px;
+    padding:22px 26px; margin-top:8px}
+  .fork code{font-family:'IBM Plex Mono',monospace; background:var(--paper); border:1px solid var(--rule-soft);
+    border-radius:3px; padding:.12em .45em; font-size:.85em}
+
+  footer{background:var(--paper); padding:36px 0 48px; color:var(--ink-soft); font-size:.86rem}
+  footer .grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:28px}
+  footer h4{font-family:'IBM Plex Mono',monospace; font-size:.7rem; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--ink-faint); margin:0 0 .7em}
+  footer p{margin:.2em 0}
+  .disclaimer{font-size:.78rem; color:var(--ink-faint); border-top:1px solid var(--rule);
+    margin-top:26px; padding-top:16px}
+
+  @media (max-width:720px){
+    .hero-grid{grid-template-columns:1fr; gap:26px; padding:36px 0}
+    .cover{max-width:240px; margin:0 auto}
+    .editions,.layers,footer .grid{grid-template-columns:1fr}
+    .hero h1{font-size:2.2rem}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <img class="cover" src="assets/cover.png" width="1024" height="1536"
+         alt="Book cover: a tall sailing ship at a stone quay on the left, a modern container ship and the Manhattan skyline on the right, beneath a faded world map; title in deep navy serif.">
+    <div>
+      <span class="kicker">A data essay · economic history · eighth edition</span>
+      <h1>The Shifting Weight<br><span class="of">of</span> Nations</h1>
+      <p class="subtitle">GDP shares, population, and power in world history — five centuries of economic transformation.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="edition.html">Read online →</a>
+        <a class="btn btn-ghost" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-with-cover.pdf">Download PDF</a>
+        <a class="btn btn-ghost" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-audio.pdf">Audio edition</a>
+      </div>
+      <p class="byline">Directed by Hulki Okan Tabak · written by Claude 4.8 and Hulki Okan Tabak</p>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <section class="wrap">
+    <span class="kicker">What this is</span>
+    <h2>One number, worn two ways.</h2>
+    <p class="lead">It takes a memorable claim about the economic weight of nations and subjects it to scrutiny rather than repeating or debunking it. The whole method is one identity:</p>
+    <div class="spine">
+      <p>A nation's share of world GDP is <b>population × price-level × productivity</b>. People switch silently between two rulers — market-rate <b>nominal</b> and price-adjusted <b>PPP</b> — and between <em>size</em> and <em>prosperity</em>. Separate the rulers, divide out population, and five centuries of rise and fall collapse onto one durable variable: <b>productivity</b>.</p>
+    </div>
+    <blockquote class="rule-quote">Read the <b>ruler</b> first, the <b>direction</b> second, and the <b>decimal point</b> last.</blockquote>
+  </section>
+
+  <section class="wrap">
+    <span class="kicker">Three editions, one source</span>
+    <h2>Read it the way that suits you.</h2>
+    <p class="lead">Every edition is rendered from a single source of truth — one data file, one manuscript — so the formats can never drift.</p>
+    <div class="editions">
+      <article class="ed">
+        <span class="tag">Interactive</span>
+        <h3>The live page</h3>
+        <p>Sixteen interactive figures with a West-bloc toggle — explore the rulers, the multiplier, and the long view in your browser.</p>
+        <a class="go" href="edition.html">Open the interactive edition →</a>
+      </article>
+      <article class="ed">
+        <span class="tag">Print · PDF</span>
+        <h3>The typeset book</h3>
+        <p>The full essay, typeset for reading and citation, with the cover. 62 pages, embedded figures and reference tables.</p>
+        <a class="go" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-with-cover.pdf">Download the PDF →</a>
+      </article>
+      <article class="ed">
+        <span class="tag">Audio · TTS</span>
+        <h3>The screen-reader edition</h3>
+        <p>Prose without the tables and figure scaffolding — built to be read aloud by Speechify, Peech, and other text-to-speech apps.</p>
+        <a class="go" href="https://github.com/hulkiokantabak/weight-of-nations/raw/main/outputs/the-shifting-weight-of-nations-audio.pdf">Download the audio edition →</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <span class="kicker">A living document</span>
+    <h2>Dated to read, open to revise.</h2>
+    <p class="lead">The project is built as three layers, and naming them keeps the claim honest.</p>
+    <div class="layers">
+      <div class="layer"><span class="n">1</span><b>Dated editions</b><span>Fixed snapshots — this PDF, the audio, the interactive page — for readers to quote and cite.</span></div>
+      <div class="layer"><span class="n">2</span><b>A public repository</b><span>The data, the code, the claim registry, and the correction log — the source of truth, openly licensed.</span></div>
+      <div class="layer"><span class="n">3</span><b>A skill</b><span>The reasoning, codified — the interface to the repository, not a second source of truth.</span></div>
+    </div>
+    <div class="fork">
+      <p style="margin-top:0">When a new <strong>IMF</strong>, <strong>World Bank</strong>, or <strong>UN</strong> release lands, the numbers change in one place, a 52-check suite re-runs, and all three editions rebuild. The argument — a method and a set of directions — does not expire when a denominator is revised.</p>
+      <p>Anyone may read, copy, or <strong>fork</strong> it. The ordinary way to propose a change — a corrected figure, a new vintage, a better chart — is to fork the repository and open a request to merge. Updating it is an <em>option</em>, not an obligation: if it is never touched again, the dated edition stands on its own.</p>
+      <p style="margin-bottom:0"><a href="https://github.com/hulkiokantabak/weight-of-nations">View the repository on GitHub →</a> &nbsp;·&nbsp; <code>git clone</code>, edit <code>build/data.py</code>, run the suite, open a PR.</p>
+    </div>
+  </section>
+
+  <section class="wrap">
+    <span class="kicker">Sources &amp; provenance</span>
+    <h2>Where the numbers come from.</h2>
+    <p class="lead">Data is drawn from public sources, kept in separate lanes and never spliced: <strong>IMF</strong> World Economic Outlook, <strong>World Bank</strong> WDI, <strong>UN</strong> World Population Prospects, the <strong>Maddison</strong> Project (deep history), and <strong>Bairoch</strong> (manufacturing). An independent analysis built from a public <em>Uncommon Knowledge</em> conversation (guest Stephen Kotkin, host Peter Robinson) — not a transcript, an endorsement, or a Hoover publication.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="grid">
+      <div>
+        <h4>Cite this edition</h4>
+        <p>Hulki Okan Tabak, with Claude. <em>The Shifting Weight of Nations</em> (eighth edition, 2026).</p>
+        <p><a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/CITATION.cff">Machine-readable citation →</a></p>
+      </div>
+      <div>
+        <h4>Licence</h4>
+        <p>Prose, figures &amp; data: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY-4.0</a>.</p>
+        <p>Code: <a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/LICENSE.md">MIT</a>.</p>
+      </div>
+      <div>
+        <h4>The project</h4>
+        <p><a href="https://github.com/hulkiokantabak/weight-of-nations">Repository</a></p>
+        <p><a href="https://github.com/hulkiokantabak/weight-of-nations/blob/main/CONTRIBUTING.md">Contribute / fork</a></p>
+      </div>
+    </div>
+    <p class="disclaimer">This is analysis and a public essay, <strong>not financial advice</strong>; the scenario coda is explicitly illustrative, not a forecast. GDP share is not identical to power — technology, institutions, energy, demographics, and political capacity decide how output becomes power. This page is a snapshot of the eighth edition; the living version is the repository.</p>
+  </div>
+</footer>
+</body>
+</html>
