@@ -6,7 +6,7 @@ manuscript if you edit it.
 
 ## 1 · Dependencies
 ```bash
-pip install weasyprint fonttools brotli pypdf cairosvg pyspellchecker matplotlib numpy
+pip install weasyprint fonttools brotli pypdf cairosvg pyspellchecker matplotlib numpy img2pdf pillow
 ```
 (Renderers used by the pipeline that are normally already present: `pdftoppm` (poppler) and
 `montage` (ImageMagick) for QA rasterization — not required for the build itself.)
