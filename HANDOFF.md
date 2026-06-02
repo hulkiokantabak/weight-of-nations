@@ -106,6 +106,13 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
    edition) and on manual run, copying the current `outputs/` edition in at deploy time. Optional
    polish: a custom `hulkiokantabak.com` subpage (Settings → Pages → Custom domain); a future
    data-refresh will redeploy the site automatically.
+   *Polished 2026-06-02 (website-improvement panels — landing layer only, editions/manuscript/data/PDFs
+   untouched):* self-hosted the bundled fonts (dropped the Google Fonts dependency); optimized the hero
+   (2.98 MB→210 KB) + added a 1200×630 OG card; added favicon / `404.html` / `robots.txt` / `sitemap.xml`
+   / bibliographic JSON-LD; accessibility floor (focus-visible, AA contrast, reduced-motion); and **fixed
+   a deploy conflict** — `living-update.yml` no longer deploys (it only rebuilds + opens a PR), so a data
+   push can no longer replace the landing page with the bare edition; `pages.yml` is the sole deployer.
+   The duplicate `website/edition.html` is now generated at deploy, not tracked (see `docs/LOG.md`).
 2. **Make the repo fork-ready** for outside contributors. Turn `CONTRIBUTING.md` into a concrete
    fork → edit `build/data.py` → run the 52-check suite → rebuild → open-a-PR walkthrough; add a
    `.gitattributes` (LF for code/text) so line endings stay stable across Windows/macOS/Linux clones
@@ -123,6 +130,13 @@ Outputs go to `outputs/` by default (override with `WON_OUTPUT_DIR`). Environmen
   `https://github.com/hulkiokantabak/weight-of-nations` (`main` + tags). *Next: in repo Settings →
   Actions → General, enable "Read and write permissions" + allow Actions to create PRs, so the
   living-update workflow can open PRs (PUBLISH-GUIDE §A).*
+- [x] **Security/privacy audit of the public repo (2026-06-02).** No keys, no private email (commits
+  use the GitHub `noreply` address; the personal gmail appears nowhere in the tree or history), no
+  machine username, no stray secret files; CI uses the built-in `GITHUB_TOKEN` via scoped permissions.
+  Hardened `.gitignore` (blocks secret file types), added `SECURITY.md`, and a gitignored `local-notes/`
+  for private working files. **Process docs kept public** by recommendation (nothing private;
+  transparency + fork-readiness are the brand) — a one-command private-split recipe is staged in
+  `local-notes/PRIVATE-SPLIT-HOWTO.md` if ever wanted.
 - [ ] **Publish** the editions to Google Books, Substack, and Medium — see
   `publication/PUBLISH-GUIDE.md`. *Requires the author's accounts; the chair prepares, the author
   publishes.*

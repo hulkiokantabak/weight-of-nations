@@ -14,6 +14,41 @@ where known.*
 
 ---
 
+## Website improvement session — panels + landing-layer pass (2026-06-02)
+
+A standalone website round, **no edition / manuscript / data / PDF change**. The **website-experts**
+panel (Vinh chair, 5 rounds) and the **Weight-of-Nations** panel (Compass chair, 5 rounds) ran
+separately; a joint 5-round session (chair: Code) ratified a landing-layer list. Shipped to
+`website/` only:
+
+- **Self-hosted fonts.** The landing loaded Google Fonts render-blocking though the exact 7 woff2
+  already ship in the repo — now self-hosted from `website/assets/fonts/` (faster, private, durable).
+  The interactive *edition* keeps its own stack — untouched.
+- **Image weight.** Hero cover 2.98 MB PNG → 210 KB JPEG; added a composed 1200×630 Open Graph card;
+  removed the duplicate `website/assets/cover.png` (canonical stays in `build/covers/`).
+- **A11y floor** (Soueidan): `:focus-visible` outlines, AA-contrast faint text
+  (`#857B6C`→`#6E6456`, ≈3.7→≈5:1), `theme-color`, `prefers-reduced-motion` gating of smooth scroll.
+- **Identity / discoverability:** favicon (SVG + PNG monogram), in-style `404.html`, `robots.txt`,
+  `sitemap.xml`, bibliographic JSON-LD + OG/Twitter metadata — **no GDP figures** (Parity/Numéraire:
+  ruler discipline applies to metadata too).
+- **The body behind the aggregate** (Hearth): one ruler-aware human sentence on the landing, drawn
+  from the essay's register, no decimal.
+
+| # | Catch | Sev | Where | Resolution | Standing rule |
+|---|---|---|---|---|---|
+| W-01 | **A second Pages job in `living-update.yml` deployed the raw edition as `index.html`** on any push to `build/data.py` — a data refresh would silently replace the landing page with the bare edition. | 3 | CI/website | Removed the job + its `pages`/`id-token` perms; `pages.yml` is the sole deployer. | 🔒 one deployer for the site; rebuild workflows open PRs, they don't deploy. |
+| W-02 | **2.98 MB hero PNG + an 813 KB tracked `edition.html` duplicate** (byte-identical to `outputs/`, overwritten at deploy) bloated the site/repo and could silently drift. | 2 | website | Optimized imagery; un-tracked + gitignored the generated edition copy (deploy / `build_html.py` own it). | 🔒 don't track a file the deploy regenerates; ship imagery at display resolution. |
+
+**Security/privacy audit (same day).** The public repo carries **no keys, no private email** (commits
+use the GitHub `noreply` address; `hotabak@gmail.com` never appears in tree or history), **no machine
+username**, no stray secret files; CI uses the built-in `GITHUB_TOKEN` via scoped permissions. Added a
+secret-blocking `.gitignore`, a `SECURITY.md`, and a gitignored `local-notes/`. Recommendation on
+record: **keep the process docs (handoff / ground-rules / skills) public** — nothing private, and
+transparency + fork-readiness are the project's brand; a one-command private-split recipe is staged in
+`local-notes/PRIVATE-SPLIT-HOWTO.md`.
+
+---
+
 ## Publication round + panel retrospective (2026-06-02)
 
 Published with cover, three editions, and a live site; added the website link to the book (masthead +
