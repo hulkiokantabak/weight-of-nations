@@ -11,7 +11,9 @@
 #   * opens a PULL REQUEST with the rebuilt outputs (never commits to main blind), so a human
 #     ratifies before publication — this is the "directions, not decimals" gate in CI form.
 #
-# A separate job (on pushes to main) publishes the interactive edition to GitHub Pages.
+# Site deployment is handled separately by .github/workflows/pages.yml (the landing page + the
+# interactive edition). This workflow only rebuilds editions and opens a PR — it does NOT deploy,
+# so a data-file push can never replace the landing page with the bare edition.
 #
 # Setup (one time, in repo Settings):
 #   Actions → General → Workflow permissions → "Read and write" + "Allow Actions to create PRs"
@@ -32,8 +34,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-  pages: write
-  id-token: write
 
 jobs:
   rebuild:
@@ -98,24 +98,3 @@ jobs:
           add-paths: |
             outputs/**
           delete-branch: true
-
-  pages:
-    # Publish the interactive edition as the site, on pushes to main.
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    needs: []
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/checkout@v4
-      - name: Assemble the site (interactive edition as index.html)
-        run: |
-          mkdir -p _site
-          cp outputs/the-shifting-weight-of-nations.html _site/index.html
-          cp outputs/the-shifting-weight-of-nations.pdf _site/ 2>/dev/null || true
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-      - id: deployment
-        uses: actions/deploy-pages@v4
