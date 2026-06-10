@@ -127,6 +127,111 @@ if ends["status-quo-plus"] > ends["base drift"] > ends["fragmentation"] > ends["
     ok(f"2050 ordering correct: {ends}")
 else: bad("dollar ordering", f"{ends}")
 
+hdr("15. ***Manuscript reference tables (B1/B2/B3 + front table) match data.py***")
+# The editions' numeric reference tables are markdown tables in the manuscript,
+# parsed verbatim into content.py. They DUPLICATE numbers data.py feeds the charts,
+# so a data.py-only refresh would leave them at the old vintage and the editions'
+# own appendix would contradict their figures. This check parses those manuscript
+# tables and asserts every cell that has a data.py counterpart still matches — so a
+# data.py-only refresh goes RED until the manuscript reference tables are updated too.
+import os, re as _re
+_MS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "manuscript",
+                   "the-shifting-weight-of-nations.md")
+
+def _md_tables(path):
+    """Return list of (headers, rows) for every pipe-table in the markdown file."""
+    tables, cur = [], None
+    def cells(line): return [c.strip() for c in line.strip().strip("|").split("|")]
+    def issep(cs): return all(_re.match(r'^:?-{2,}:?$', (c or "-")) for c in cs)
+    with open(path, encoding="utf-8") as fh:
+        for raw in fh:
+            if raw.strip().startswith("|"):
+                cs = cells(raw)
+                if cur is None:
+                    cur = {"headers": cs, "rows": []}
+                elif issep(cs):
+                    pass
+                else:
+                    cur["rows"].append(cs)
+            else:
+                if cur is not None:
+                    tables.append((cur["headers"], cur["rows"])); cur = None
+        if cur is not None:
+            tables.append((cur["headers"], cur["rows"]))
+    return tables
+
+def _find(tables, sig):
+    for h, r in tables:
+        if h == sig: return r
+    return None
+
+try:
+    _T = _md_tables(_MS)
+    _num = lambda s: float(_re.sub(r"[^0-9.\-]", "", s))
+
+    # --- B1 / front table: Entity | Nominal % | PPP % | Population % | Nominal x | PPP x ---
+    _B1SIG = ["Entity", "Nominal %", "PPP %", "Population %", "Nominal ×", "PPP ×"]
+    _b1 = _find(_T, _B1SIG)
+    if _b1 is None:
+        bad("B1 table present", f"no manuscript table with headers {_B1SIG}")
+    else:
+        # rows whose entity is a data.py SHARE24_ENT member (skip constructed sums)
+        _ENTMAP = {"EU-27": "EU (27)"}  # manuscript label -> data.py label
+        _checked = 0
+        for row in _b1:
+            ent = _ENTMAP.get(row[0], row[0])
+            if ent not in D.SHARE24_ENT:
+                continue
+            j = D.SHARE24_ENT.index(ent)
+            exp = [D.SHARE24_NOM[j], D.SHARE24_PPP[j],
+                   D.POP24[D.POP24_ENT.index(ent)],
+                   D.MULT24_NOM[D.MULT24_ENT.index(ent)],
+                   D.MULT24_PPP[D.MULT24_ENT.index(ent)]]
+            got = [_num(c) for c in row[1:6]]
+            if all(near(g, e, 0.005) for g, e in zip(got, exp)):
+                _checked += 1
+            else:
+                bad(f"B1 row {row[0]}", f"manuscript {got} vs data.py {exp}")
+                _checked += 1
+        if _checked:
+            ok(f"B1 table: {_checked} data-backed rows match data.py (SHARE24/POP24/MULT24)")
+        else:
+            bad("B1 cross-check", "no data-backed rows found to verify")
+
+    # --- B2 marker table: Entity | IMF PPP share % | Nominal GDP ($tn) | Nominal share % ---
+    _B2SIG = ["Entity", "IMF PPP share %", "Nominal GDP ($tn)", "Nominal share %"]
+    _b2 = _find(_T, _B2SIG)
+    if _b2 is None:
+        bad("B2 table present", f"no manuscript table with headers {_B2SIG}")
+    else:
+        _mk = {ent: (ppp, nomt, noms) for ent, ppp, nomt, noms in D.MARKER}
+        _bad = []
+        for row in _b2:
+            ent = row[0]
+            if ent in _mk:
+                if [c.strip() for c in row[1:4]] != list(_mk[ent]):
+                    _bad.append(f"{ent}: manuscript {row[1:4]} vs MARKER {list(_mk[ent])}")
+        if _bad:
+            bad("B2 table vs D.MARKER", "; ".join(_bad))
+        else:
+            ok(f"B2 table matches D.MARKER cell-for-cell ({len(_b2)} rows)")
+
+    # --- B3 table: 1500 population must equal AGG_L_POP[0] (the suite's check 11 anchor) ---
+    _B3SIG = ["Year", "Population", "World PPP output", "Output per person", "Reading"]
+    _b3 = _find(_T, _B3SIG)
+    if _b3 is None:
+        bad("B3 table present", f"no manuscript table with headers {_B3SIG}")
+    else:
+        _r1500 = next((r for r in _b3 if r[0].strip() == "1500"), None)
+        if _r1500 is None:
+            bad("B3 1500 row", "no 1500 row in B3 table")
+        elif near(_num(_r1500[1]), D.AGG_L_POP[0], 0.005):
+            ok(f"B3 1500 population {_r1500[1]} == AGG_L_POP[0] {D.AGG_L_POP[0]}")
+        else:
+            bad("B3 1500 population", f"manuscript {_r1500[1]} vs AGG_L_POP[0] {D.AGG_L_POP[0]}")
+except FileNotFoundError:
+    bad("manuscript reference tables", f"manuscript not found at {_MS}")
+
 # ---------------------------------------------------------------
 print("\n" + "="*64)
 print(f"  RESULT: {len(PASS)} passed, {len(FAIL)} FAILED")
@@ -134,3 +239,4 @@ if FAIL:
     print("  FAILURES:")
     for n, d in FAIL: print(f"   - {n}: {d}")
 print("="*64)
+sys.exit(1 if FAIL else 0)

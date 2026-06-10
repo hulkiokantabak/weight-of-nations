@@ -167,14 +167,28 @@ def render(b):
 
     if k == "table":
         cap = b.get("caption", "")
-        # skip the pure-production metrics/colophon table in the audio edition
-        if cap.strip().lower().startswith("inputs, process"):
+        hdrs = [str(h).strip().lower() for h in b.get("headers", [])]
+        # skip the pure-production metrics/colophon table (Appendix E "The Project
+        # in Numbers") in the audio edition. parse_manuscript.py emits tables with
+        # no caption, so key the skip on the table's own header signature.
+        if hdrs == ["detail", "value"]:
             return ""
+        # the heavy 2024 numeric table (the front "world this essay divides" table
+        # and Appendix B1) carries the six-column entity/two-rulers/two-multipliers
+        # signature. Detect it structurally rather than via a caption that the
+        # parser never attaches.
+        is_two_rulers = (
+            len(hdrs) == 6
+            and hdrs[0] == "entity"
+            and "nominal" in hdrs[1] and "%" in hdrs[1]
+            and "ppp" in hdrs[2] and "%" in hdrs[2]
+            and "population" in hdrs[3]
+        )
         out = []
         if cap:
             out.append(P(cap, "tcap"))
         # bespoke spoken form for the heavy 2024 numeric table
-        if "two rulers and two multipliers" in cap.lower():
+        if is_two_rulers:
             for r in b["rows"]:
                 ent = tts(r[0])
                 nom = re.sub(r"\..*", "", r[1]); ppp = re.sub(r"\..*", "", r[2]); pop = r[3]

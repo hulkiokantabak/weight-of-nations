@@ -66,10 +66,16 @@ jobs:
       - name: Consistency suite (blocks the build if red)
         working-directory: build
         run: |
+          set -o pipefail
+          # check_consistency.py exits nonzero when any check fails; pipefail makes
+          # that exit code propagate through the tee pipe and fail the step.
           python3 check_consistency.py | tee /tmp/checks.txt
-          grep -q "0 FAILED" /tmp/checks.txt
+          # Belt-and-braces text gate: anchor to ', 0 FAILED' at end of the RESULT
+          # line so '10/20/30/40/50 FAILED' (which contain the substring '0 FAILED')
+          # can never pass.
+          grep -qE ', 0 FAILED$' /tmp/checks.txt
 
-      - name: Rebuild the three editions
+      - name: Rebuild the four outputs
         working-directory: build
         env:
           # WeasyPrint reads the bundled @fontsource woff2 from the repo
@@ -77,6 +83,10 @@ jobs:
           WON_OUTPUT_DIR: ${{ github.workspace }}/outputs
         run: |
           python3 build_pdf.py
+          # build_cover.py prepends the cover to the freshly built essay PDF, producing
+          # the with-cover PDF the landing page's primary "Download PDF" CTA serves.
+          # Without this the published set is mixed-vintage (new edition.html, stale book).
+          python3 build_cover.py
           python3 build_html.py
           python3 build_audio.py
 
@@ -89,7 +99,8 @@ jobs:
             Automated rebuild from the single source of truth.
 
             **Before merging, a human must confirm:**
-            - the consistency suite passed (52/0) — see the job log;
+            - the consistency suite passed (RESULT line ends `, 0 FAILED`) — see the job log;
+            - the with-cover PDF was re-merged from the fresh essay PDF (the `Download PDF` CTA);
             - this is a **decimals-only** refresh (every direction in the prose still holds).
               If a *direction* changed, this is a new analytical edition and must go through
               the review body (`skills/weight-of-nations-panel`) and an edition bump first —

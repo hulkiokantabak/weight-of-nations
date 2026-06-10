@@ -96,10 +96,15 @@ h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.28rem;margin:1.7em 0
 .two-col p{font-size:.95rem;color:var(--ink-soft);margin:0;max-width:none}
 @media(max-width:620px){.two-col{grid-template-columns:1fr;gap:16px}}
 
-.figure{margin:40px 0 30px;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:26px 26px 22px;box-shadow:var(--shadow);opacity:0;transform:translateY(18px)}
-.figure.in{animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
+.figure{margin:40px 0 30px;background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:26px 26px 22px;box-shadow:var(--shadow)}
+/* Figures are visible by default (opacity:1). The entrance animation only hides
+   them first when JS is actually running AND the chart library loaded — the
+   <html> gets class "charts" in that case. If the Chart.js CDN fails, figures
+   (including the six static base64 <img> coda figures) stay fully visible. */
+.charts .figure{opacity:0;transform:translateY(18px)}
+.charts .figure.in{animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes rise{to{opacity:1;transform:none}}
-@media (prefers-reduced-motion:reduce){.figure{opacity:1;transform:none;animation:none}}
+@media (prefers-reduced-motion:reduce){.charts .figure{opacity:1;transform:none;animation:none}}
 .fig-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:4px}
 .fig-num{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase}
 .fig-title{font-family:"Fraunces",serif;font-weight:600;font-size:1.35rem;line-height:1.15;margin:.15em 0 .1em}
@@ -202,10 +207,23 @@ def fig_inner(key):
     return f'<div class="chart-box"><canvas id="c_{key}"></canvas></div>'
 
 SCRIPT = """
+// Register the CDN-failure fallback FIRST, before anything that touches Chart,
+// so it survives even if the Chart.js CDN was blocked or failed to load. If we
+// registered it after a `Chart.defaults...` line that throws ReferenceError, the
+// whole inline script would abort and this handler would never be attached.
+window.addEventListener('load',()=>{if(typeof Chart==='undefined'){document.querySelectorAll('.chart-box:not(.chart-static)').forEach(b=>{b.innerHTML='<p style=\\'font-family:monospace;font-size:12px;color:#8C8273;padding:40px 0\\'>[ chart library could not load ]</p>';});}});
 const D = __DATA__;
 const css=getComputedStyle(document.documentElement);
 const COL={}; for(const k in D.PAL){COL[k]=D.PAL[k];}
 function ck(map,name){return COL[map[name]];}
+// If the Chart.js CDN failed to load, `Chart` is undefined. Bail out of all chart
+// setup so the rest of the page (prose + the six static base64 <img> figures)
+// renders normally and the fallback handler above can run.
+if(typeof Chart!=='undefined'){
+// Chart.js loaded: opt the figures into the entrance animation (they start hidden
+// and the IntersectionObserver below reveals them). Without this class the figures
+// are visible by default, so a failed CDN never leaves blank gaps.
+document.documentElement.classList.add('charts');
 Chart.defaults.font.family="'IBM Plex Sans',sans-serif";
 Chart.defaults.font.size=12.5; Chart.defaults.color=COL.ink_soft;
 const GRID={color:'rgba(34,28,23,0.07)',drawTicks:false};
@@ -328,8 +346,7 @@ function wireWest(){const btn=document.getElementById('westBtn');if(!btn||btn._w
     if(on){const i=nomChart.data.datasets.findIndex(d=>d.label===W.label);if(i>-1)nomChart.data.datasets.splice(i,1);btn.setAttribute('aria-pressed','false');btn.textContent='+ Show the \\u201cWest\\u201d bloc (US + EU + UK + Japan)';}
     else{nomChart.data.datasets.push({...W});btn.setAttribute('aria-pressed','true');btn.textContent='\\u2013 Hide the \\u201cWest\\u201d bloc';}
     nomChart.update();});}
-
-window.addEventListener('load',()=>{if(typeof Chart==='undefined'){document.querySelectorAll('.chart-box').forEach(b=>{b.innerHTML='<p style=\\'font-family:monospace;font-size:12px;color:#8C8273;padding:40px 0\\'>[ chart library could not load ]</p>';});}});
+} // end if(typeof Chart!=='undefined') — chart setup is skipped when the CDN failed
 """
 
 def build():
