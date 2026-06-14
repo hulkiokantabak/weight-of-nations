@@ -48,6 +48,15 @@ jobs:
           if ! grep -qi goatcounter _site/edition.html; then
             perl -0777 -i -pe 'BEGIN{$g=$ENV{GC_TAG}} s#(.*)</body>#$1$g</body>#s' _site/edition.html
           fi
+          # Home Screen icon for the deployed edition. The apple-touch-icon, favicon and
+          # theme-color point at website/assets/, which exist only in the assembled _site/
+          # — a deployment concern, injected here rather than baked into the citable
+          # outputs/ artifact (same principle as the analytics tag above). The landing
+          # already carries these in its source; the edition is generated, so add them to
+          # the deployed copy. Idempotent — the guard skips if a future build embeds them.
+          if ! grep -qi apple-touch-icon _site/edition.html; then
+            perl -0777 -i -pe 's{</head>}{<link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><meta name="theme-color" content="#F4EEE2"></head>}s' _site/edition.html
+          fi
       - uses: actions/configure-pages@v6
       - uses: actions/upload-pages-artifact@v5
         with:
