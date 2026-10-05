@@ -8,16 +8,19 @@
 #   * installs deps + system font libs, stages the bundled fonts;
 #   * runs the 52-check consistency suite — a red check FAILS the job and blocks everything;
 #   * rebuilds all three editions from the single source of truth;
-#   * opens a PULL REQUEST with the rebuilt outputs (never commits to main blind), so a human
-#     ratifies before publication — this is the "directions, not decimals" gate in CI form.
+#   * pushes the rebuilt outputs to the review branch living-update/auto-rebuild (never commits
+#     to main blind) and prints a link; the owner opens the PULL REQUEST from that link, so a
+#     human ratifies before publication — the "directions, not decimals" gate in CI form.
+#     (The workflow does not open the PR itself, so the repository setting "Allow GitHub
+#     Actions to create and approve pull requests" can stay off.)
 #
 # Site deployment is handled separately by .github/workflows/pages.yml (the landing page + the
-# interactive edition). This workflow only rebuilds editions and opens a PR — it does NOT deploy,
+# interactive edition). This workflow only rebuilds editions and pushes a review branch — it does NOT deploy,
 # so a data-file push can never replace the landing page with the bare edition.
 #
 # Setup (one time, in repo Settings):
-#   Actions → General → Workflow permissions → "Read and write" + "Allow Actions to create PRs"
 #   Pages → Source → "GitHub Actions"
+#   (No Actions permission change is needed: this file grants itself contents: write.)
 
 name: living-update
 
@@ -27,13 +30,13 @@ on:
     - cron: "0 6 1 5 *"    # 1 May
     - cron: "0 6 1 11 *"   # 1 November
   push:
+    branches: [main]   # without this, every tag push (v8.x) also runs the rebuild
     paths:
       - "build/data.py"
   workflow_dispatch: {}
 
 permissions:
   contents: write
-  pull-requests: write
 
 jobs:
   rebuild:
@@ -90,22 +93,32 @@ jobs:
           python3 build_html.py
           python3 build_audio.py
 
-      - name: Open a pull request with the rebuilt editions
-        uses: peter-evans/create-pull-request@v7
-        with:
-          commit-message: "living-update: rebuild editions from refreshed data"
-          title: "Living update — rebuilt editions"
-          body: |
-            Automated rebuild from the single source of truth.
-
-            **Before merging, a human must confirm:**
-            - the consistency suite passed (RESULT line ends `, 0 FAILED`) — see the job log;
-            - the with-cover PDF was re-merged from the fresh essay PDF (the `Download PDF` CTA);
-            - this is a **decimals-only** refresh (every direction in the prose still holds).
-              If a *direction* changed, this is a new analytical edition and must go through
-              the review body (`skills/weight-of-nations-panel`) and an edition bump first —
-              close this PR and handle it in a chair session.
-          branch: living-update/auto-rebuild
-          add-paths: |
-            outputs/**
-          delete-branch: true
+      - name: Push the rebuilt editions to a review branch (the owner opens the PR)
+        env:
+          BRANCH: living-update/auto-rebuild
+        run: |
+          git add outputs
+          if git diff --cached --quiet; then
+            echo "Rebuilt outputs are identical to main; nothing to review."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git commit -m "living-update: rebuild editions from refreshed data"
+          # The review branch belongs to this workflow; replace any earlier unreviewed rebuild.
+          git push --force origin "$BRANCH"
+          url="https://github.com/${GITHUB_REPOSITORY}/compare/main...${BRANCH}?expand=1"
+          echo "::notice title=Living update ready::Open the pull request: $url"
+          {
+            echo "### Living update ready for review"
+            echo ""
+            echo "Open the pull request: $url"
+            echo ""
+            echo "Before merging, a human must confirm:"
+            echo "- the consistency suite passed (RESULT line ends \`, 0 FAILED\`) - see this job's log;"
+            echo "- the with-cover PDF was re-merged from the fresh essay PDF (the \`Download PDF\` CTA);"
+            echo "- this is a **decimals-only** refresh (every direction in the prose still holds)."
+            echo "  If a direction changed, this is a new analytical edition: close the PR and handle it"
+            echo "  in a chair session with the review body (skills/weight-of-nations-panel)."
+          } >> "$GITHUB_STEP_SUMMARY"
